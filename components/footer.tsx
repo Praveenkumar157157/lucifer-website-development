@@ -41,26 +41,13 @@ export function Footer() {
   }
 
   const footerLinks = [
-    {
-      title: "Products",
-      links: ["Lemon Lime", "Pineapple Coconut", "Mystery", "Bundles"],
-    },
-    {
-      title: "Quick Links",
-      links: ["Home", "Flavours", "Creators", "Distributors"],
-    },
-    {
-      title: "Company",
-      links: ["About", "Careers", "Press", "Contact"],
-    },
-    {
-      title: "Legal",
-      links: ["Privacy Policy", "Terms of Service", "Cookie Policy"],
-    },
+    { title: "Explore", links: ["About", "APIs", "Skills", "Contact"] },
+    { title: "Build with", links: ["Python", "Next.js", "AI", "Automation"] },
+    { title: "Connect", links: ["GitHub", "LinkedIn", "Instagram", "Email"] },
   ]
 
   return (
-    <footer ref={footerRef} id="careers" className="relative bg-[#121212] pt-16 pb-6 overflow-hidden">
+    <footer ref={footerRef} id="contact" className="relative bg-[#121212] pt-16 pb-6 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 60 }}
@@ -86,7 +73,7 @@ export function Footer() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1], delay: 0.1 }}
             >
-              LEVEL UP?
+              BUILD NEXT?
             </motion.span>
           </h2>
         </motion.div>
@@ -131,7 +118,7 @@ export function Footer() {
                 animate={isSubmitting ? { opacity: [1, 0.5, 1] } : {}}
                 transition={{ duration: 0.5, repeat: isSubmitting ? Number.POSITIVE_INFINITY : 0 }}
               >
-                {isSubmitting ? "Joining..." : "Get 25% Off"}
+                {isSubmitting ? "Joining..." : "Join the lab"}
               </motion.span>
             </motion.button>
           </div>
@@ -142,7 +129,7 @@ export function Footer() {
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}
           >
-            Join 50k+ dreamers. No spam, just energy.
+            Updates on new experiments. No spam.
           </motion.p>
         </motion.div>
 
@@ -154,13 +141,12 @@ export function Footer() {
           transition={{ delay: 0.3 }}
         >
           <p className="text-white/60 font-mono text-xs max-w-xl mx-auto leading-relaxed">
-            GiGi Energy is a better-for-you energy drink crafted with natural flavors, zero sugar, and a clean energy
-            formula. Fuel your ambition without the crash.
+              LuciferAI is a personal technology lab by K Praveenkumar — exploring code, AI, APIs, and creative systems. Build something useful, then share what you learned.
           </p>
         </motion.div>
 
         <motion.div
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 py-8 border-t border-white/10"
+          className="grid grid-cols-2 md:grid-cols-3 gap-6 py-8 border-t border-white/10"
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
@@ -174,7 +160,7 @@ export function Footer() {
                     <motion.div whileHover={{ x: 4 }} transition={{ type: "spring", stiffness: 400, damping: 17 }}>
                       <Link
                         href="#"
-                        className="text-white/60 hover:text-[#AFFF00] font-mono text-xs transition-colors inline-block"
+                        className="text-white/60 hover:text-cyan-300 font-mono text-xs transition-colors inline-block"
                       >
                         {item}
                       </Link>

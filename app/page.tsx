@@ -1,6 +1,4 @@
 import { Navigation } from "@/components/navigation"
-import { BentoGrid } from "@/components/bento-grid"
-import { SocialSection } from "@/components/social-section"
 import { Footer } from "@/components/footer"
 import { ApiSection } from "@/components/api-section"
 
@@ -28,8 +26,7 @@ export default function Home() {
       <LuciferHero />
       <section id="about" className="bg-[#0d0d12] px-6 py-20 text-white"><div className="mx-auto max-w-6xl"><p className="font-mono text-xs uppercase tracking-[0.3em] text-fuchsia-400">// about</p><h2 className="mt-4 max-w-3xl text-3xl font-bold md:text-5xl">Turning curiosity into practical digital experiences.</h2><p className="mt-6 max-w-2xl leading-8 text-white/55">LuciferAI is a space for learning, experimenting, and sharing projects across software development, artificial intelligence, APIs, automation, and creative technology.</p></div></section>
       <ApiSection />
-      <BentoGrid />
-      <SocialSection />
+      <section id="skills" className="bg-[#08080b] px-6 py-20 text-white"><div className="mx-auto max-w-6xl"><p className="font-mono text-xs uppercase tracking-[0.3em] text-cyan-300">// lucifer stack</p><h2 className="mt-4 text-3xl font-bold md:text-5xl">Tools for turning ideas into systems.</h2><div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">{["Python", "AI / LLMs", "Next.js", "REST APIs", "Automation", "UI systems", "Data workflows", "Experiments"].map((skill) => <div key={skill} className="rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4 font-mono text-sm text-white/70 transition hover:border-fuchsia-400/50 hover:text-white">{skill}</div>)}</div></div></section>
       <Footer />
     </main>
   )
