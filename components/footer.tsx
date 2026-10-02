@@ -185,8 +185,8 @@ export function Footer() {
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
           >
             <span className="text-xl font-black">
-              <span className="text-white">Gi</span>
-              <span className="text-[#AFFF00]">Gi</span>
+              <span className="text-white">Lucifer</span>
+              <span className="text-cyan-300">AI</span>
             </span>
           </motion.div>
 
@@ -211,7 +211,7 @@ export function Footer() {
             }
             transition={{ duration: 0.5 }}
           >
-            made with energy
+            made with curiosity
           </motion.p>
         </motion.div>
       </div>

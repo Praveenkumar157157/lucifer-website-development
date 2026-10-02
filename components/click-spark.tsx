@@ -135,22 +135,29 @@ const ClickSpark: React.FC<ClickSparkProps> = ({
     }
   }, [sparkColor, sparkSize, sparkRadius, sparkCount, duration, easeFunc, extraScale])
 
-  const handleClick = (e: React.MouseEvent<HTMLDivElement>): void => {
+  const addSparks = (clientX: number, clientY: number, count = sparkCount) => {
     const canvas = canvasRef.current
     if (!canvas) return
     const rect = canvas.getBoundingClientRect()
-    const x = e.clientX - rect.left
-    const y = e.clientY - rect.top
-
+    const x = clientX - rect.left
+    const y = clientY - rect.top
     const now = performance.now()
-    const newSparks: Spark[] = Array.from({ length: sparkCount }, (_, i) => ({
+    const newSparks: Spark[] = Array.from({ length: count }, (_, i) => ({
       x,
       y,
-      angle: (2 * Math.PI * i) / sparkCount,
+      angle: (2 * Math.PI * i) / count,
       startTime: now,
     }))
-
     sparksRef.current.push(...newSparks)
+  }
+
+  const handleClick = (e: React.MouseEvent<HTMLDivElement>): void => {
+    addSparks(e.clientX, e.clientY)
+  }
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>): void => {
+    if (e.pointerType === "touch") return
+    addSparks(e.clientX, e.clientY, 3)
   }
 
   return (
@@ -161,6 +168,7 @@ const ClickSpark: React.FC<ClickSparkProps> = ({
         position: "relative",
       }}
       onClick={handleClick}
+      onPointerMove={handlePointerMove}
     >
       <canvas
         ref={canvasRef}

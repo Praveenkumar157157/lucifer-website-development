@@ -36,7 +36,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`font-sans antialiased`}>
         <ClickSpark
-          sparkColor="#AFFF00"
+          sparkColor="#67e8f9"
           sparkSize={12}
           sparkRadius={20}
           sparkCount={8}

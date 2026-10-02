@@ -13,7 +13,7 @@ function LuciferHero() {
           <p className="mt-7 max-w-xl text-lg leading-8 text-white/55">Hi, I&apos;m K Praveenkumar. I build with code, AI, APIs, and modern web technologies — one experiment at a time.</p>
           <div className="mt-9 flex flex-wrap gap-3"><a href="#api" className="rounded-full bg-white px-6 py-3 text-sm font-bold text-black transition hover:bg-cyan-200">Explore the APIs</a><a href="#about" className="rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-white/80 transition hover:border-fuchsia-400/60 hover:text-white">About LuciferAI</a></div>
         </div>
-        <div className="relative mx-auto w-full max-w-sm"><div className="absolute -inset-8 rounded-full bg-fuchsia-500/20 blur-3xl" /><img src="/images/image.png" alt="Neon purple cat mascot wearing pixel sunglasses" className="relative aspect-square w-full rounded-[2rem] border border-white/15 object-cover shadow-2xl shadow-fuchsia-900/40" /></div>
+        <div className="relative mx-auto w-full max-w-sm"><div className="absolute -inset-8 rounded-full bg-fuchsia-500/20 blur-3xl" /><img src="/images/luciferai-mascot.avif" alt="Cartoon LuciferAI mascot posing confidently" className="relative aspect-square w-full rounded-[2rem] border border-white/15 object-cover shadow-2xl shadow-fuchsia-900/40" /></div>
       </div>
     </section>
   )

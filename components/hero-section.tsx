@@ -139,7 +139,7 @@ export function HeroSection() {
                 custom={3}
                 className="text-lg md:text-xl font-mono text-[#121212]/60 tracking-tight pt-2 max-w-md"
               >
-                Zero sugar. Natural flavors. Clean energy that hits different.
+                Practical systems. Creative experiments. Technology that feels different.
               </motion.p>
             </div>
 
