@@ -4,6 +4,7 @@ import { Inter, JetBrains_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { LenisProvider } from "@/components/lenis-provider"
 import ClickSpark from "@/components/click-spark"
+import MagneticNav from "@/components/magnetic-nav"
 import "./globals.css"
 
 const _inter = Inter({
@@ -43,6 +44,7 @@ export default function RootLayout({
           duration={400}
           easing="ease-out"
         >
+          <MagneticNav />
           <LenisProvider>{children}</LenisProvider>
         </ClickSpark>
         <Analytics />
