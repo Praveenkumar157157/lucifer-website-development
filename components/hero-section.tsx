@@ -233,7 +233,7 @@ export function HeroSection() {
                   alt="LUCIFER AI character"
                   width={680}
                   height={760}
-                  className="relative z-10 bg-transparent mix-blend-multiply drop-shadow-2xl"
+                  className="relative z-10 bg-transparent drop-shadow-2xl"
                   priority
                 />
               </motion.div>
