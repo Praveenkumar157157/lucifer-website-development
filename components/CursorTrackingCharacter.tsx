@@ -10,6 +10,20 @@ export function CursorTrackingCharacter() {
   const target = useRef({ x: 0, y: 0, angle: 0, distance: 0 })
   const frameRef = useRef<Direction>("center")
   const [direction, setDirection] = useState<Direction>("center")
+  const [blinking, setBlinking] = useState(false)
+
+  useEffect(() => {
+    let timeout: ReturnType<typeof setTimeout>
+    const blink = () => {
+      setBlinking(true)
+      timeout = setTimeout(() => {
+        setBlinking(false)
+        timeout = setTimeout(blink, 2200 + Math.random() * 2800)
+      }, 150)
+    }
+    timeout = setTimeout(blink, 1800 + Math.random() * 2200)
+    return () => clearTimeout(timeout)
+  }, [])
 
   useEffect(() => {
     const root = rootRef.current
@@ -51,7 +65,7 @@ export function CursorTrackingCharacter() {
   return (
     <div ref={rootRef} className="relative flex min-h-[480px] items-end justify-center md:min-h-[620px]" aria-label={`Character looking ${directionLabels[direction]}`}>
       <div className="absolute left-1/2 top-1/2 size-[min(38vw,28rem)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-fuchsia-500/20 blur-[90px]" />
-      <div className="character-tracking relative z-10 w-[min(78vw,34rem)]" data-direction={direction}>
+      <div className="character-tracking relative z-10 w-[min(78vw,34rem)]" data-direction={direction} data-blinking={blinking}>
         <div className="pointer-events-none absolute left-1/2 top-[24%] z-20 size-5 -translate-x-1/2 rounded-full border border-cyan-200/80 bg-cyan-300/30 shadow-[0_0_22px_8px_rgba(34,211,238,0.35)]" aria-hidden="true" />
         <img src={frames[direction]} alt="Smiling LUCIFER AI character following the mouse direction" className="relative z-10 h-auto w-full select-none drop-shadow-[0_30px_35px_rgba(0,0,0,0.5)]" draggable={false} />
       </div>

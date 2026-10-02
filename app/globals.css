@@ -9,6 +9,7 @@
   transition: transform 80ms linear;
 }
 
+.character-tracking::before,
 .character-tracking::after {
   content: "";
   position: absolute;
@@ -32,6 +33,27 @@
 .character-tracking[data-direction="downLeft"]::after,
 .character-tracking[data-direction="left"]::after,
 .character-tracking[data-direction="upLeft"]::after { opacity: 0.9; }
+
+.character-tracking::before {
+  left: 43%;
+  top: 28%;
+  width: 14%;
+  height: 5px;
+  border-radius: 9999px;
+  background: rgba(45, 24, 25, 0.92);
+  box-shadow: 0 0 2px rgba(45, 24, 25, 0.9);
+  opacity: 0;
+  transform: translate3d(calc(var(--cursor-x, 0px) * 0.06), calc(var(--cursor-y, 0px) * 0.06), 0) scaleY(0.2);
+  transition: opacity 80ms ease, transform 80ms ease;
+  z-index: 30;
+}
+
+.character-tracking[data-blinking="true"]::before {
+  opacity: 1;
+  transform: translate3d(calc(var(--cursor-x, 0px) * 0.06), calc(var(--cursor-y, 0px) * 0.06), 0) scaleY(1);
+}
+
+.character-tracking[data-blinking="true"]::after { opacity: 0; }
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
