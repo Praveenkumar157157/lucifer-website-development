@@ -100,7 +100,7 @@ export function HeroSection() {
                 animate={{ scale: [1, 1.2, 1], opacity: [1, 0.7, 1] }}
                 transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
               />
-              BETTER-FOR-YOU ENERGY DRINK
+              CREATIVE AI SYSTEMS
             </motion.div>
 
             <div className="space-y-1 overflow-hidden">
@@ -191,7 +191,7 @@ export function HeroSection() {
               custom={5}
               className="flex flex-wrap gap-4 pt-2"
             >
-              {["Zero Sugar", "75mg Caffeine", "AI-ready workflows", "Vitamin B Rich"].map((benefit, i) => (
+              {["Zero friction", "75mg Caffeine", "AI-ready workflows", "Vitamin B Rich"].map((benefit, i) => (
                 <motion.div
                   key={benefit}
                   className="flex items-center gap-2 text-xs font-mono text-[#121212]/60"

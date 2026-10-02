@@ -146,7 +146,7 @@ export function Navigation() {
             animate={{ x: ["-100%", "200%"] }}
             transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, repeatDelay: 3 }}
           />
-          <span className="relative z-10">Get 25% Off</span>
+          <span className="relative z-10">Start building</span>
         </motion.button>
 
         <motion.button
@@ -208,7 +208,7 @@ export function Navigation() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
               >
-                Get 25% Off
+                Start building
               </motion.button>
             </div>
           </motion.div>

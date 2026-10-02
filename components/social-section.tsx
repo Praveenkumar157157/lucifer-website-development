@@ -60,7 +60,7 @@ export function SocialSection() {
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
           >
-            FOLLOW THE ENERGY
+            FOLLOW THE BUILD
           </motion.span>
           <h2 className="text-3xl md:text-5xl font-black text-white tracking-tighter mt-2 overflow-hidden">
             <motion.span
@@ -70,7 +70,7 @@ export function SocialSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1], delay: 0.2 }}
             >
-              @GIGIENERGY
+              @LUCIFERAI
             </motion.span>
             <motion.span
               className="text-[#AFFF00] inline-block"

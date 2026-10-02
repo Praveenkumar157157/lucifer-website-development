@@ -126,7 +126,7 @@ export function FlavorCarousel() {
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
-            OUR FLAVOURS
+            LUCIFERAI PROJECTS
           </motion.span>
           <h2 className="text-3xl md:text-5xl font-black text-[#121212] tracking-tighter mt-2 overflow-hidden">
             <motion.span
@@ -249,7 +249,7 @@ export function FlavorCarousel() {
                           animate={{ opacity: 1 }}
                           transition={{ delay: 0.5 }}
                         >
-                          {["Zero Sugar", "Metabolism Boost", "AI workflows", "Vitamin Rich"].map((badge) => (
+                          {["AI workflows", "Metabolism Boost", "AI workflows", "Vitamin Rich"].map((badge) => (
                             <span
                               key={badge}
                               className="px-2 py-1 bg-[#121212]/5 rounded-full text-xs font-mono text-[#121212]/60"

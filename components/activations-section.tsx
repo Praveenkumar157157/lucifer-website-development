@@ -26,7 +26,7 @@ const activations = [
   {
     icon: Calendar,
     title: "Event Organizers",
-    description: "Sponsor your next event with LuciferAI energy.",
+    description: "Bring LuciferAI to your next creative build.",
     cta: "Sponsor Event",
   },
 ]

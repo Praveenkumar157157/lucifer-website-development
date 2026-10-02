@@ -1,3 +1,6 @@
+"use client"
+
+import { motion } from "framer-motion"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { ApiSection } from "@/components/api-section"
@@ -13,7 +16,11 @@ function LuciferHero() {
           <p className="mt-7 max-w-xl text-lg leading-8 text-white/55">Hi, I&apos;m K Praveenkumar. I build with code, AI, APIs, and modern web technologies — one experiment at a time.</p>
           <div className="mt-9 flex flex-wrap gap-3"><a href="#api" className="rounded-full bg-white px-6 py-3 text-sm font-bold text-black transition hover:bg-cyan-200">Explore the APIs</a><a href="#about" className="rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-white/80 transition hover:border-fuchsia-400/60 hover:text-white">About LuciferAI</a></div>
         </div>
-        <div className="relative mx-auto w-full max-w-sm"><div className="absolute -inset-8 rounded-full bg-fuchsia-500/20 blur-3xl" /><img src="/images/luciferai-mascot.avif" alt="Cartoon LuciferAI mascot posing confidently" className="relative aspect-square w-full rounded-[2rem] border border-white/15 object-cover shadow-2xl shadow-fuchsia-900/40" /></div>
+        <motion.div className="relative mx-auto w-full max-w-sm" initial={{ opacity: 0, y: 28, rotate: -3 }} animate={{ opacity: 1, y: [0, -10, 0], rotate: [-3, 2, -3] }} transition={{ opacity: { duration: 0.7 }, y: { duration: 4, repeat: Infinity, ease: "easeInOut" }, rotate: { duration: 4, repeat: Infinity, ease: "easeInOut" } }}>
+          <motion.div className="absolute -inset-8 rounded-full bg-fuchsia-500/20 blur-3xl" animate={{ scale: [1, 1.12, 1], opacity: [0.45, 0.75, 0.45] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }} />
+          <motion.div className="absolute -right-5 top-8 z-10 rounded-2xl border border-cyan-300/30 bg-[#10131c]/90 px-4 py-2 font-mono text-xs text-cyan-200 shadow-xl" initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: [0, 1, 1, 0], y: [8, 0, -4, -10] }} transition={{ duration: 5, repeat: Infinity, times: [0, 0.12, 0.8, 1] }}>hey, let&apos;s build</motion.div>
+          <img src="/images/luciferai-smiling-mascot.png" alt="Smiling animated LuciferAI girl mascot" className="relative aspect-square w-full rounded-[2rem] border border-white/15 object-cover shadow-2xl shadow-fuchsia-900/40" />
+        </motion.div>
       </div>
     </section>
   )
