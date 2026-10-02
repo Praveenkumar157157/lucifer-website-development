@@ -49,8 +49,8 @@ export function ApiSection() {
       <div className="relative mx-auto max-w-6xl px-6">
         <div className="mb-12 max-w-2xl">
           <span className="font-mono text-xs uppercase tracking-[0.3em] text-fuchsia-400">// api section</span>
-          <h2 className="mt-4 text-4xl font-black tracking-tight md:text-6xl">Build on the data layer.</h2>
-          <p className="mt-5 max-w-xl text-base leading-7 text-white/55">Simple, public GET endpoints for result and history data. Explore a source, test the response, and wire LuciferAI into your next experiment.</p>
+          <h2 className="mt-4 text-4xl font-black tracking-tight md:text-6xl">LuciferAPI services.</h2>
+          <p className="mt-5 max-w-xl text-base leading-7 text-white/55">Explore LuciferAPI projects and data services. Test a public GET endpoint, inspect the JSON response, and connect it to your next application.</p>
         </div>
 
         <div className="grid gap-5 lg:grid-cols-[0.8fr_1.2fr]">
