@@ -229,11 +229,11 @@ export function HeroSection() {
                 }}
               >
                 <Image
-                  src="/images/drink2.png"
-                  alt="LUCIFER AI creative technology system"
-                  width={350}
-                  height={525}
-                  className="relative z-10 drop-shadow-2xl"
+                  src="/character-replacement.png"
+                  alt="LUCIFER AI character"
+                  width={680}
+                  height={760}
+                  className="relative z-10 mix-blend-multiply drop-shadow-2xl"
                   priority
                 />
               </motion.div>
