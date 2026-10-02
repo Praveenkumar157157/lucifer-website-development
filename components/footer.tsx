@@ -184,9 +184,9 @@ export function Footer() {
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
           >
-            <span className="text-xl font-black">
-              <span className="text-white">Lucifer</span>
-              <span className="text-cyan-300">AI</span>
+            <span className="flex items-center gap-3 text-xl font-black">
+              <span className="size-9 overflow-hidden rounded-xl border border-fuchsia-400/40"><img src="/images/luciferai-brand-logo.jpg" alt="LuciferAI cat mascot logo" className="size-full object-cover" /></span>
+              <span><span className="text-white">Lucifer</span><span className="text-cyan-300">AI</span></span>
             </span>
           </motion.div>
 
