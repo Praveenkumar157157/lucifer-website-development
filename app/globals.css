@@ -9,28 +9,6 @@
   transition: transform 80ms linear;
 }
 
-.cursor-sprite {
-  position: relative;
-  z-index: 10;
-  width: 100%;
-  aspect-ratio: 0.89;
-  background-image: url('/character-directions-sheet.jpg');
-  background-size: 400% 200%;
-  background-repeat: no-repeat;
-  filter: drop-shadow(0 30px 35px rgba(0,0,0,0.5));
-  user-select: none;
-}
-
-.cursor-sprite-center { background-position: 0% 0%; }
-.cursor-sprite-up { background-position: 33.333% 0%; }
-.cursor-sprite-upRight { background-position: 66.666% 0%; }
-.cursor-sprite-right { background-position: 100% 0%; }
-.cursor-sprite-downLeft { background-position: 0% 100%; }
-.cursor-sprite-left { background-position: 33.333% 100%; }
-.cursor-sprite-down { background-position: 66.666% 100%; }
-.cursor-sprite-downRight { background-position: 100% 100%; }
-.cursor-sprite-upLeft { background-position: 33.333% 0%; }
-
 .character-tracking::before,
 .character-tracking::after {
   content: "";
