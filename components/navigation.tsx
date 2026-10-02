@@ -64,7 +64,7 @@ export function Navigation() {
     { label: "Home", href: "#hero" },
     { label: "About", href: "#about" },
     { label: "APIs", href: "#api" },
-    { label: "Skills", href: "#formula" },
+    { label: "Skills", href: "#skills" },
     { label: "Contact", href: "#contact" },
   ]
 

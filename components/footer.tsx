@@ -190,7 +190,7 @@ export function Footer() {
             </span>
           </motion.div>
 
-          <p className="text-white/40 font-mono text-xs">© 2026 GiGi Energy. All rights reserved.</p>
+          <p className="text-white/40 font-mono text-xs">© 2026 LuciferAI. All rights reserved.</p>
 
           <motion.p
             className="text-white/30 font-mono text-xs cursor-pointer"
@@ -222,8 +222,8 @@ export function Footer() {
         whileInView={{ y: 0, opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 1, ease: "easeOut" }}
-      >
-        GiGi
+> LuciferAI
+
       </motion.div>
     </footer>
   )

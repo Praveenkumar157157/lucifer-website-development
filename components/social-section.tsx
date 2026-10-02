@@ -137,7 +137,7 @@ export function SocialSection() {
           transition={{ delay: 0.5 }}
         >
           <motion.a
-            href="https://instagram.com/gigienergy.in"
+            href="https://instagram.com/luciferai.dev"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 bg-[#AFFF00] text-[#121212] px-6 py-3 rounded-full font-bold text-sm tracking-wide relative overflow-hidden group"
@@ -151,7 +151,7 @@ export function SocialSection() {
               transition={{ duration: 0.6 }}
             />
             <Instagram className="w-4 h-4 relative z-10" />
-            <span className="relative z-10">Follow @gigienergy.in</span>
+            <span className="relative z-10">Follow @luciferai.dev</span>
           </motion.a>
         </motion.div>
       </div>

@@ -1,10 +1,10 @@
-# GiGi Energy Drink - Gen Z Landing Page
+# LuciferAI - Personal AI and developer systems
 
 ## Title
-**GiGi Energy - Modern Gen Z Energy Drink Landing Page with Lenis Smooth Scroll & Framer Motion**
+**LuciferAI - Learn, build, experiment, and create with modern AI systems**
 
 ## Description
-A bold, premium energy drink landing page designed for the Gen Z audience. Features a striking dark theme with electric lime accents, ultra-smooth Lenis scrolling, and sophisticated Framer Motion micro-animations throughout.
+A bold personal technology brand for AI, APIs, developer tools, and creative experiments. Features a striking dark theme with electric accents, ultra-smooth Lenis scrolling, and sophisticated Framer Motion micro-animations throughout.
 
 ### Key Features
 - **Lenis Smooth Scrolling** - Buttery smooth scroll experience with customized lerp and duration settings
@@ -18,7 +18,7 @@ A bold, premium energy drink landing page designed for the Gen Z audience. Featu
 ### Design Highlights
 - Dark charcoal (#121212) background with electric lime (#AFFF00) accents
 - Compressed bold typography for headlines with monospace tech specs
-- Premium energy drink brand hierarchy and UX patterns
+- Premium developer brand hierarchy and UX patterns
 - Compact, modern layout with intentional white space
 
 ### Sections Included

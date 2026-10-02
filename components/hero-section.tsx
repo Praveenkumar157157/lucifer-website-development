@@ -180,7 +180,7 @@ export function HeroSection() {
                 whileTap={{ scale: 0.98 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
               >
-                Explore Flavours
+                Explore the system
               </motion.button>
             </motion.div>
 
@@ -191,7 +191,7 @@ export function HeroSection() {
               custom={5}
               className="flex flex-wrap gap-4 pt-2"
             >
-              {["Zero Sugar", "75mg Caffeine", "Natural Flavours", "Vitamin B Rich"].map((benefit, i) => (
+              {["Zero Sugar", "75mg Caffeine", "AI-ready workflows", "Vitamin B Rich"].map((benefit, i) => (
                 <motion.div
                   key={benefit}
                   className="flex items-center gap-2 text-xs font-mono text-[#121212]/60"
@@ -230,7 +230,7 @@ export function HeroSection() {
               >
                 <Image
                   src="/images/drink2.png"
-                  alt="GiGi Energy Drink - Lemon Lime Flavour"
+                  alt="LuciferAI creative technology system"
                   width={350}
                   height={525}
                   className="relative z-10 drop-shadow-2xl"

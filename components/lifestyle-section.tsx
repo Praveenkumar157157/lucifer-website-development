@@ -13,9 +13,9 @@ const lifestyleImages = [
 ]
 
 const socialPosts = [
-  { handle: "@creativekatie", text: "GiGi got me through my entire album production. No cap 🔥", likes: "2.4k" },
+  { handle: "@creativekatie", text: "LuciferAI got me through my entire album production. No cap 🔥", likes: "2.4k" },
   { handle: "@fitnessjay", text: "Zero sugar but 100% energy. This is the one.", likes: "1.8k" },
-  { handle: "@techbro_sam", text: "Finally an energy drink that doesn't taste like chemicals", likes: "956" },
+  { handle: "@techbro_sam", text: "Finally, an AI system that feels useful instead of noisy", likes: "956" },
 ]
 
 const containerVariants = {

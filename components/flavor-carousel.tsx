@@ -102,7 +102,7 @@ export function FlavorCarousel() {
   const prevFlavor = () => paginate(-1)
 
   return (
-    <section id="flavours" className="relative py-16 bg-white overflow-hidden">
+    <section id="projects" className="relative py-16 bg-white overflow-hidden">
       <motion.div
         className={`absolute inset-0 bg-gradient-to-br ${currentFlavor.bgColor}`}
         initial={{ opacity: 0 }}
@@ -249,7 +249,7 @@ export function FlavorCarousel() {
                           animate={{ opacity: 1 }}
                           transition={{ delay: 0.5 }}
                         >
-                          {["Zero Sugar", "Metabolism Boost", "Natural Flavours", "Vitamin Rich"].map((badge) => (
+                          {["Zero Sugar", "Metabolism Boost", "AI workflows", "Vitamin Rich"].map((badge) => (
                             <span
                               key={badge}
                               className="px-2 py-1 bg-[#121212]/5 rounded-full text-xs font-mono text-[#121212]/60"
