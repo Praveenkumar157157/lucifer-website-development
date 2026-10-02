@@ -3,8 +3,6 @@
 import { motion } from "framer-motion"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
-import { ApiSection } from "@/components/api-section"
-import { AiChatSection } from "@/components/ai-chat-section"
 
 function LuciferHero() {
   return (
@@ -32,10 +30,7 @@ export default function Home() {
     <main className="min-h-screen bg-background">
       <Navigation />
       <LuciferHero />
-      <section id="about" className="bg-[#0d0d12] px-6 py-20 text-white"><div className="mx-auto max-w-6xl"><p className="font-mono text-xs uppercase tracking-[0.3em] text-fuchsia-400">// about</p><h2 className="mt-4 max-w-3xl text-3xl font-bold md:text-5xl">Turning curiosity into practical digital experiences.</h2><p className="mt-6 max-w-2xl leading-8 text-white/55">LuciferAI is a space for learning, experimenting, and sharing projects across software development, artificial intelligence, APIs, automation, and creative technology.</p></div></section>
-      <AiChatSection />
-      <ApiSection />
-      <section id="skills" className="bg-[#08080b] px-6 py-20 text-white"><div className="mx-auto max-w-6xl"><p className="font-mono text-xs uppercase tracking-[0.3em] text-cyan-300">// lucifer stack</p><h2 className="mt-4 text-3xl font-bold md:text-5xl">Tools for turning ideas into systems.</h2><div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">{["Python", "AI / LLMs", "Next.js", "REST APIs", "Automation", "UI systems", "Data workflows", "Experiments"].map((skill) => <div key={skill} className="rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4 font-mono text-sm text-white/70 transition hover:border-fuchsia-400/50 hover:text-white">{skill}</div>)}</div></div></section>
+      <section className="bg-[#0d0d12] px-6 py-20 text-white"><div className="mx-auto grid max-w-6xl gap-5 md:grid-cols-3"><a href="/chat" className="rounded-3xl border border-cyan-300/20 bg-cyan-300/[0.06] p-6 transition hover:border-cyan-300/60"><p className="font-mono text-xs text-cyan-300">01 / AI</p><h2 className="mt-12 text-2xl font-bold">Talk to LuciferAI</h2></a><a href="/api-explorer" className="rounded-3xl border border-fuchsia-400/20 bg-fuchsia-400/[0.06] p-6 transition hover:border-fuchsia-400/60"><p className="font-mono text-xs text-fuchsia-300">02 / APIs</p><h2 className="mt-12 text-2xl font-bold">Explore the endpoints</h2></a><a href="/skills" className="rounded-3xl border border-white/10 bg-white/[0.04] p-6 transition hover:border-white/40"><p className="font-mono text-xs text-white/50">03 / STACK</p><h2 className="mt-12 text-2xl font-bold">See the toolkit</h2></a></div></section>
       <Footer />
     </main>
   )
