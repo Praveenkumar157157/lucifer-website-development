@@ -231,8 +231,8 @@ export function HeroSection() {
                 <Image
                   src="/character-replacement.png"
                   alt="LUCIFER AI character"
-                  width={680}
-                  height={760}
+                  width={900}
+                  height={1000}
                   className="relative z-10 bg-transparent drop-shadow-2xl"
                   priority
                 />
