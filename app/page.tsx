@@ -7,7 +7,9 @@ import { Footer } from "@/components/footer"
 function LuciferHero() {
   return (
     <section id="hero" className="relative flex min-h-[92vh] items-center overflow-hidden bg-[#08080b] px-6 pt-28 text-white">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_35%,rgba(168,85,247,0.22),transparent_32%),radial-gradient(circle_at_15%_75%,rgba(34,211,238,0.12),transparent_28%)]" />
+      <div className="absolute inset-0 bg-[url('/images/luciferai-home-background.png')] bg-cover bg-center opacity-45" aria-hidden="true" />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,8,11,0.98)_0%,rgba(8,8,11,0.78)_42%,rgba(8,8,11,0.3)_100%),linear-gradient(180deg,rgba(8,8,11,0.35),rgba(8,8,11,0.94))]" aria-hidden="true" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_35%,rgba(168,85,247,0.22),transparent_32%),radial-gradient(circle_at_15%_75%,rgba(34,211,238,0.12),transparent_28%)]" aria-hidden="true" />
       <div className="relative mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
         <div>
           <p className="font-mono text-xs uppercase tracking-[0.3em] text-cyan-300">LuciferAI / personal tech brand</p>
