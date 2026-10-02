@@ -8,7 +8,7 @@ const activations = [
   {
     icon: Sparkles,
     title: "Free Tasting Events",
-    description: "Experience LuciferAI at exclusive tasting events near you.",
+    description: "Experience LUCIFER AI at exclusive tasting events near you.",
     cta: "Find Events",
   },
   {
@@ -26,7 +26,7 @@ const activations = [
   {
     icon: Calendar,
     title: "Event Organizers",
-    description: "Bring LuciferAI to your next creative build.",
+    description: "Bring LUCIFER AI to your next creative build.",
     cta: "Sponsor Event",
   },
 ]
@@ -106,7 +106,7 @@ export function ActivationsSection() {
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}
           >
-            From tasting events to corporate partnerships, bring LuciferAI into your world.
+            From tasting events to corporate partnerships, bring LUCIFER AI into your world.
           </motion.p>
         </motion.div>
 

@@ -1,7 +1,7 @@
-# LuciferAI - Personal AI and developer systems
+# LUCIFER AI - Personal AI and developer systems
 
 ## Title
-**LuciferAI - Learn, build, experiment, and create with modern AI systems**
+**LUCIFER AI - Learn, build, experiment, and create with modern AI systems**
 
 ## Description
 A bold personal technology brand for AI, APIs, developer tools, and creative experiments. Features a striking dark theme with electric accents, ultra-smooth Lenis scrolling, and sophisticated Framer Motion micro-animations throughout.

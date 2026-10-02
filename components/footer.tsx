@@ -141,7 +141,7 @@ export function Footer() {
           transition={{ delay: 0.3 }}
         >
           <p className="text-white/60 font-mono text-xs max-w-xl mx-auto leading-relaxed">
-              LuciferAI is a personal technology lab by K Praveenkumar — exploring code, AI, APIs, and creative systems. Build something useful, then share what you learned.
+              LUCIFER AI is a personal technology lab by K Praveenkumar — exploring code, AI, APIs, and creative systems. Build something useful, then share what you learned.
           </p>
         </motion.div>
 
@@ -185,12 +185,12 @@ export function Footer() {
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
           >
             <span className="flex items-center gap-3 text-xl font-black">
-              <span className="size-9 overflow-hidden rounded-xl border border-fuchsia-400/40"><img src="/images/luciferai-brand-logo.jpg" alt="LuciferAI cat mascot logo" className="size-full object-cover" /></span>
-              <span><span className="text-white">Lucifer</span><span className="text-cyan-300">AI</span></span>
+              <span className="size-9 overflow-hidden rounded-xl border border-fuchsia-400/40"><img src="/images/luciferai-brand-logo.jpg" alt="LUCIFER AI cat mascot logo" className="size-full object-cover" /></span>
+              <span><span className="text-white">LUCIFER</span> <span className="text-cyan-300">AI</span></span>
             </span>
           </motion.div>
 
-          <p className="text-white/40 font-mono text-xs">© 2026 LuciferAI. All rights reserved.</p>
+          <p className="text-white/40 font-mono text-xs">© 2026 LUCIFER AI. All rights reserved.</p>
 
           <motion.p
             className="text-white/30 font-mono text-xs cursor-pointer"
@@ -222,7 +222,7 @@ export function Footer() {
         whileInView={{ y: 0, opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 1, ease: "easeOut" }}
-> LuciferAI
+> LUCIFER AI
 
       </motion.div>
     </footer>

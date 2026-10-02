@@ -17,9 +17,9 @@ const _jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "LuciferAI | Learn. Build. Experiment. Create.",
-  description: "LuciferAI by K Praveenkumar — coding, AI, APIs, web development, and creative technology experiments.",
-  keywords: ["LuciferAI", "K Praveenkumar", "AI", "APIs", "web development", "Python"],
+  title: "LUCIFER AI | Learn. Build. Experiment. Create.",
+  description: "LUCIFER AI by K Praveenkumar — coding, AI, APIs, web development, and creative technology experiments.",
+  keywords: ["LUCIFER AI", "K Praveenkumar", "AI", "APIs", "web development", "Python"],
     generator: 'v0.app'
 }
 

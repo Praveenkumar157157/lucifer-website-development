@@ -230,7 +230,7 @@ export function HeroSection() {
               >
                 <Image
                   src="/images/drink2.png"
-                  alt="LuciferAI creative technology system"
+                  alt="LUCIFER AI creative technology system"
                   width={350}
                   height={525}
                   className="relative z-10 drop-shadow-2xl"

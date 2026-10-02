@@ -13,7 +13,7 @@ const lifestyleImages = [
 ]
 
 const socialPosts = [
-  { handle: "@creativekatie", text: "LuciferAI got me through my entire album production. No cap 🔥", likes: "2.4k" },
+  { handle: "@creativekatie", text: "LUCIFER AI got me through my entire album production. No cap 🔥", likes: "2.4k" },
   { handle: "@fitnessjay", text: "Simple tools, thoughtful systems. This is the one.", likes: "1.8k" },
   { handle: "@techbro_sam", text: "Finally, an AI system that feels useful instead of noisy", likes: "956" },
 ]
