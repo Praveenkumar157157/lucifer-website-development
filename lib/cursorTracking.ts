@@ -18,7 +18,7 @@ export const getCursorAngle = (cursorX: number, cursorY: number, originX: number
 export const getCursorDistance = (cursorX: number, cursorY: number, originX: number, originY: number) =>
   Math.hypot(cursorX - originX, cursorY - originY)
 
-export const getDirection = (angle: number, distance: number, deadzone = 110): Direction => {
+export const getDirection = (angle: number, distance: number, deadzone = 55): Direction => {
   if (distance < deadzone) return "center"
   const degrees = (angle * 180) / Math.PI
   if (degrees >= -22.5 && degrees < 22.5) return "right"

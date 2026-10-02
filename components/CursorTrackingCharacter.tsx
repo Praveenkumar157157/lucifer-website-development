@@ -52,9 +52,10 @@ export function CursorTrackingCharacter() {
     <div ref={rootRef} className="relative flex min-h-[480px] items-end justify-center md:min-h-[620px]" aria-label={`Character looking ${directionLabels[direction]}`}>
       <div className="absolute left-1/2 top-1/2 size-[min(38vw,28rem)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-fuchsia-500/20 blur-[90px]" />
       <div className="character-tracking relative z-10 w-[min(78vw,34rem)]" data-direction={direction}>
-        <img src={frames[direction]} alt="Smiling LUCIFER AI character" className="relative z-10 h-auto w-full select-none drop-shadow-[0_30px_35px_rgba(0,0,0,0.5)]" draggable={false} />
+        <div className="pointer-events-none absolute left-1/2 top-[24%] z-20 size-5 -translate-x-1/2 rounded-full border border-cyan-200/80 bg-cyan-300/30 shadow-[0_0_22px_8px_rgba(34,211,238,0.35)]" aria-hidden="true" />
+        <img src={frames[direction]} alt="Smiling LUCIFER AI character following the mouse direction" className="relative z-10 h-auto w-full select-none drop-shadow-[0_30px_35px_rgba(0,0,0,0.5)]" draggable={false} />
       </div>
-      <span className="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full border border-white/10 bg-black/35 px-3 py-1 font-mono text-[10px] tracking-[0.22em] text-white/45 backdrop-blur">{directionLabels[direction]}</span>
+      <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 items-center gap-3 rounded-full border border-cyan-300/20 bg-black/45 px-4 py-2 font-mono text-[10px] tracking-[0.22em] text-cyan-200/80 backdrop-blur"><span className="inline-block size-1.5 animate-pulse rounded-full bg-cyan-300" /> LOOKING {directionLabels[direction]}</div>
     </div>
   )
 }
