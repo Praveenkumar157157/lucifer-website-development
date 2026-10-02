@@ -62,10 +62,10 @@ export function Navigation() {
 
   const navLinks = [
     { label: "Home", href: "#hero" },
-    { label: "Flavours", href: "#flavours" },
-    { label: "Creators", href: "#creators" },
-    { label: "Distributors", href: "#distributors" },
-    { label: "Careers", href: "#careers" },
+    { label: "About", href: "#about" },
+    { label: "APIs", href: "#api" },
+    { label: "Skills", href: "#formula" },
+    { label: "Contact", href: "#contact" },
   ]
 
   return (
@@ -84,7 +84,7 @@ export function Navigation() {
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
           >
-            <span className={scrolled ? "text-white" : "text-[#121212]"}>Gi</span>
+            <span className={scrolled ? "text-white" : "text-[#121212]"}>Lucifer</span>
             <motion.span
               className="text-[#AFFF00]"
               animate={{
@@ -94,7 +94,7 @@ export function Navigation() {
               }}
               transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
             >
-              Gi
+              AI
             </motion.span>
           </motion.span>
         </Link>

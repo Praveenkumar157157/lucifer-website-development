@@ -17,9 +17,9 @@ const _jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "GiGi Energy Drink | Dream Big, Drink GiGi",
-  description: "Zero sugar, 75mg caffeine, 100% natural flavors. The energy drink for dreamers and doers.",
-  keywords: ["energy drink", "zero sugar", "natural energy", "GiGi", "caffeine"],
+  title: "LuciferAI | Learn. Build. Experiment. Create.",
+  description: "LuciferAI by K Praveenkumar — coding, AI, APIs, web development, and creative technology experiments.",
+  keywords: ["LuciferAI", "K Praveenkumar", "AI", "APIs", "web development", "Python"],
     generator: 'v0.app'
 }
 
