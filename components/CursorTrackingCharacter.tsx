@@ -11,17 +11,6 @@ export function CursorTrackingCharacter() {
   const frameRef = useRef<Direction>("center")
   const [direction, setDirection] = useState<Direction>("center")
   const [blinking, setBlinking] = useState(false)
-  const characterImages: Record<Direction, string> = {
-    center: "/character.png",
-    up: "/character.png",
-    upRight: "/character.png",
-    right: "/character.png",
-    downRight: "/character.png",
-    down: "/character.png",
-    downLeft: "/character.png",
-    left: "/character.png",
-    upLeft: "/character.png",
-  }
 
   useEffect(() => {
     let timeout: ReturnType<typeof setTimeout>
@@ -78,7 +67,7 @@ export function CursorTrackingCharacter() {
       <div className="absolute left-1/2 top-1/2 size-[min(38vw,28rem)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-fuchsia-500/20 blur-[90px]" />
       <div className="character-tracking relative z-10 w-[min(78vw,34rem)]" data-direction={direction} data-blinking={blinking}>
         <div className="pointer-events-none absolute left-1/2 top-[24%] z-20 size-5 -translate-x-1/2 rounded-full border border-cyan-200/80 bg-cyan-300/30 shadow-[0_0_22px_8px_rgba(34,211,238,0.35)]" aria-hidden="true" />
-        <img src={characterImages[direction]} alt={`Smiling LUCIFER AI character looking ${directionLabels[direction]}`} className="relative z-10 h-auto w-full select-none drop-shadow-[0_30px_35px_rgba(0,0,0,0.5)]" draggable={false} />
+        <div className={`cursor-sheet cursor-sheet-${direction} ${blinking ? "cursor-sheet-blink" : ""}`} role="img" aria-label={`Smiling LUCIFER AI character looking ${directionLabels[direction]}`} />
       </div>
       <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 items-center gap-3 rounded-full border border-cyan-300/20 bg-black/45 px-4 py-2 font-mono text-[10px] tracking-[0.22em] text-cyan-200/80 backdrop-blur"><span className="inline-block size-1.5 animate-pulse rounded-full bg-cyan-300" /> LOOKING {directionLabels[direction]}</div>
     </div>

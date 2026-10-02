@@ -9,6 +9,29 @@
   transition: transform 80ms linear;
 }
 
+.cursor-sheet {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  aspect-ratio: 0.71;
+  background-image: url('/character-cursor-sheet.png');
+  background-size: 500% 200%;
+  background-repeat: no-repeat;
+  filter: drop-shadow(0 30px 35px rgba(0,0,0,0.5));
+  user-select: none;
+}
+
+.cursor-sheet-center { background-position: 0% 0%; }
+.cursor-sheet-up { background-position: 25% 0%; }
+.cursor-sheet-upRight { background-position: 50% 0%; }
+.cursor-sheet-right { background-position: 75% 0%; }
+.cursor-sheet-downRight { background-position: 100% 0%; }
+.cursor-sheet-left { background-position: 0% 100%; }
+.cursor-sheet-downLeft { background-position: 25% 100%; }
+.cursor-sheet-down { background-position: 50% 100%; }
+.cursor-sheet-upLeft { background-position: 75% 100%; }
+.cursor-sheet-blink { background-position: 25% 100%; }
+
 .character-tracking::before,
 .character-tracking::after {
   content: "";
