@@ -25,6 +25,7 @@ const NAV_ITEMS: NavItem[] = [
 
 export default function MagneticNav() {
   const pathname = usePathname();
+  const [menuOpen, setMenuOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [itemStates, setItemStates] = useState<Record<number, ItemState>>({
@@ -120,8 +121,31 @@ export default function MagneticNav() {
   return (
     <div
       ref={containerRef}
-      className="fixed right-0 top-0 bottom-0 w-32 pointer-events-none z-40"
+      className="fixed inset-0 pointer-events-none z-40"
     >
+      <button
+        type="button"
+        aria-label={menuOpen ? 'Close navigation' : 'Open navigation'}
+        aria-expanded={menuOpen}
+        onClick={() => setMenuOpen((open) => !open)}
+        className="pointer-events-auto fixed right-6 top-6 z-50 flex size-12 flex-col items-center justify-center gap-1.5 rounded-full border border-white/15 bg-black/35 backdrop-blur-md transition hover:border-cyan-300/60 hover:bg-cyan-300/10"
+      >
+        <span className={`block h-0.5 w-6 rounded-full bg-cyan-300 transition-transform ${menuOpen ? 'translate-y-2 rotate-45' : ''}`} />
+        <span className={`block h-0.5 w-4 rounded-full bg-fuchsia-400 transition-opacity ${menuOpen ? 'opacity-0' : ''}`} />
+        <span className={`block h-0.5 w-6 rounded-full bg-white transition-transform ${menuOpen ? '-translate-y-2 -rotate-45' : ''}`} />
+      </button>
+
+      {menuOpen && (
+        <nav aria-label="Main navigation" className="pointer-events-auto fixed right-6 top-24 w-48 rounded-2xl border border-white/10 bg-[#0d0d12]/95 p-3 shadow-2xl shadow-cyan-950/30 backdrop-blur-xl">
+          {NAV_ITEMS.map((item) => (
+            <Link key={item.id} href={item.href} onClick={() => setMenuOpen(false)} className="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-semibold text-white/80 transition hover:bg-cyan-300/10 hover:text-cyan-300">
+              <span className="font-mono text-[10px] text-cyan-300/60">0{item.id}</span>
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+      )}
+
       <div className="relative h-full flex flex-col justify-center items-end pr-6 pointer-events-auto">
         {NAV_ITEMS.map((item) => {
           const state = itemStates[item.id];
