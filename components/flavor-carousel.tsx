@@ -4,6 +4,7 @@ import type React from "react"
 
 import { motion, AnimatePresence, useSpring } from "framer-motion"
 import { useState } from "react"
+import Image from "next/image"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
 const flavors = [
@@ -12,6 +13,7 @@ const flavors = [
     name: "Lemon Lime",
     tagline: "Citrus Shock",
     description: "A zesty explosion of natural lemon and lime that wakes you up instantly.",
+    image: "/images/drink2.png",
     bgColor: "from-[#84cc16]/20 via-[#84cc16]/10 to-transparent",
     accentColor: "#84cc16",
   },
@@ -20,6 +22,7 @@ const flavors = [
     name: "Pineapple Coconut",
     tagline: "Tropical Rush",
     description: "Island vibes with every sip. Transport yourself to paradise.",
+    image: "/images/drink1.png",
     bgColor: "from-[#f59e0b]/20 via-[#f59e0b]/10 to-transparent",
     accentColor: "#f59e0b",
   },
@@ -28,6 +31,7 @@ const flavors = [
     name: "Mystery",
     tagline: "Coming Soon",
     description: "Something epic is brewing... Stay tuned.",
+    image: "/mystery-energy-drink-can-silhouette.jpg",
     bgColor: "from-[#AFFF00]/20 via-[#AFFF00]/5 to-transparent",
     accentColor: "#AFFF00",
     mystery: true,
@@ -47,7 +51,7 @@ const slideVariants = {
     scale: 1,
     rotateY: 0,
     transition: {
-      type: "spring" as const,
+      type: "spring",
       stiffness: 300,
       damping: 30,
     },
@@ -58,7 +62,7 @@ const slideVariants = {
     scale: 0.9,
     rotateY: direction > 0 ? -15 : 15,
     transition: {
-      type: "spring" as const,
+      type: "spring",
       stiffness: 300,
       damping: 30,
     },
@@ -112,7 +116,7 @@ export function FlavorCarousel() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.25, 0.4, 0.25, 1] as const }}
+          transition={{ duration: 0.8, ease: [0.25, 0.4, 0.25, 1] }}
           className="text-center mb-10"
         >
           <motion.span
@@ -130,7 +134,7 @@ export function FlavorCarousel() {
               initial={{ y: 80 }}
               whileInView={{ y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] as const }}
+              transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
             >
               CHOOSE YOUR{" "}
             </motion.span>
@@ -140,7 +144,7 @@ export function FlavorCarousel() {
               initial={{ y: 80 }}
               whileInView={{ y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] as const, delay: 0.1 }}
+              transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1], delay: 0.1 }}
             >
               FUEL
             </motion.span>
@@ -155,7 +159,7 @@ export function FlavorCarousel() {
               className="hidden md:flex w-12 h-12 rounded-full border-2 border-[#121212] items-center justify-center hover:bg-[#121212] hover:text-white transition-colors"
               whileHover={{ scale: 1.1, rotate: -5 }}
               whileTap={{ scale: 0.9 }}
-              transition={{ type: "spring" as const, stiffness: 400, damping: 17 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
               <ChevronLeft className="w-5 h-5" />
             </motion.button>
@@ -189,9 +193,14 @@ export function FlavorCarousel() {
                     <motion.div
                       className="relative aspect-[3/4] flex items-center justify-center"
                       whileHover={{ scale: 1.05 }}
-                      transition={{ type: "spring" as const, stiffness: 300, damping: 20 }}
+                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
                     >
-                <div aria-label={currentFlavor.name} role="img" className="h-64 w-48 rounded-[2rem] border border-white/20 bg-gradient-to-br from-white/20 via-white/5 to-transparent shadow-2xl shadow-black/30" />
+                      <Image
+                        src={currentFlavor.image || "/placeholder.svg"}
+                        alt={currentFlavor.name}
+                        fill
+                        className={`object-contain ${currentFlavor.mystery ? "blur-sm grayscale" : ""}`}
+                      />
                       {currentFlavor.mystery && (
                         <motion.div
                           className="absolute inset-0 flex items-center justify-center"
@@ -218,7 +227,7 @@ export function FlavorCarousel() {
                           className="text-3xl md:text-4xl font-black text-[#121212] tracking-tighter mt-1"
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 0.3, type: "spring" as const, stiffness: 100 }}
+                          transition={{ delay: 0.3, type: "spring", stiffness: 100 }}
                         >
                           {currentFlavor.name}
                         </motion.h3>
@@ -256,7 +265,7 @@ export function FlavorCarousel() {
                           className="px-6 py-3 rounded-full font-bold text-sm tracking-wide w-full md:w-auto relative overflow-hidden"
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
-                          transition={{ type: "spring" as const, stiffness: 400, damping: 17 }}
+                          transition={{ type: "spring", stiffness: 400, damping: 17 }}
                           style={{ backgroundColor: currentFlavor.accentColor, color: "#121212" }}
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
@@ -297,7 +306,7 @@ export function FlavorCarousel() {
               className="hidden md:flex w-12 h-12 rounded-full border-2 border-[#121212] items-center justify-center hover:bg-[#121212] hover:text-white transition-colors"
               whileHover={{ scale: 1.1, rotate: 5 }}
               whileTap={{ scale: 0.9 }}
-              transition={{ type: "spring" as const, stiffness: 400, damping: 17 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
               <ChevronRight className="w-5 h-5" />
             </motion.button>
@@ -337,7 +346,7 @@ export function FlavorCarousel() {
                   width: index === currentIndex ? 28 : 10,
                 }}
                 whileHover={{ scale: 1.2 }}
-                transition={{ type: "spring" as const, stiffness: 400, damping: 25 }}
+                transition={{ type: "spring", stiffness: 400, damping: 25 }}
               />
             ))}
           </div>

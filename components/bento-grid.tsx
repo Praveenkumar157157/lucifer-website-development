@@ -73,7 +73,7 @@ function FeatureCard({ feature, index }: { feature: (typeof features)[0]; index:
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1, ease: [0.25, 0.4, 0.25, 1] as const }}
+      transition={{ duration: 0.5, delay: index * 0.1, ease: [0.25, 0.4, 0.25, 1] }}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={handleMouseLeave}
@@ -115,7 +115,7 @@ function FeatureCard({ feature, index }: { feature: (typeof features)[0]; index:
             className="w-10 h-10 rounded-xl flex items-center justify-center mb-4 relative"
             style={{ backgroundColor: `${feature.accent}20` }}
             whileHover={{ scale: 1.1 }}
-            transition={{ type: "spring" as const, stiffness: 400, damping: 17 }}
+            transition={{ type: "spring", stiffness: 400, damping: 17 }}
           >
             <motion.div
               className="absolute inset-0 rounded-xl"
@@ -134,7 +134,7 @@ function FeatureCard({ feature, index }: { feature: (typeof features)[0]; index:
               initial={{ opacity: 0, scale: 0.5 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ type: "spring" as const, stiffness: 200, damping: 20, delay: 0.2 + index * 0.1 }}
+              transition={{ type: "spring", stiffness: 200, damping: 20, delay: 0.2 + index * 0.1 }}
             >
               <span style={{ color: feature.accent }}>{feature.title}</span>
             </motion.div>
@@ -149,7 +149,7 @@ function FeatureCard({ feature, index }: { feature: (typeof features)[0]; index:
             initial={{ scaleX: 0, originX: 0 }}
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.4 + index * 0.1, ease: [0.25, 0.4, 0.25, 1] as const }}
+            transition={{ duration: 0.8, delay: 0.4 + index * 0.1, ease: [0.25, 0.4, 0.25, 1] }}
           />
         </div>
       </div>
@@ -186,7 +186,7 @@ export function BentoGrid() {
               className="text-3xl md:text-4xl font-black text-white tracking-tight"
               initial={{ y: 60 }}
               animate={isInView ? { y: 0 } : { y: 60 }}
-              transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] as const, delay: 0.15 }}
+              transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1], delay: 0.15 }}
             >
               Formula & Benefits
             </motion.h2>
@@ -197,7 +197,7 @@ export function BentoGrid() {
             className="h-[2px] w-12 bg-[#AFFF00] mx-auto mt-3 rounded-full"
             initial={{ scaleX: 0 }}
             animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
-            transition={{ duration: 0.6, delay: 0.4, ease: [0.25, 0.4, 0.25, 1] as const }}
+            transition={{ duration: 0.6, delay: 0.4, ease: [0.25, 0.4, 0.25, 1] }}
           />
         </motion.div>
 

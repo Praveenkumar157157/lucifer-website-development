@@ -3,14 +3,15 @@
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 import { Instagram } from "lucide-react"
+import Image from "next/image"
 
 const instagramPosts = [
-  { likes: "2.4k" },
-  { likes: "1.8k" },
-  { likes: "3.2k" },
-  { likes: "956" },
-  { likes: "1.5k" },
-  { likes: "2.1k" },
+  { image: "/energy-drink-lifestyle-gym-workout.jpg", likes: "2.4k" },
+  { image: "/content-creator-streaming-setup-neon.jpg", likes: "1.8k" },
+  { image: "/skateboarder-urban-street-sunset.jpg", likes: "3.2k" },
+  { image: "/student-studying-library-late-night.jpg", likes: "956" },
+  { image: "/entrepreneur-startup-office-meeting.jpg", likes: "1.5k" },
+  { image: "/athlete-fitness-morning-routine.jpg", likes: "2.1k" },
 ]
 
 const containerVariants = {
@@ -31,7 +32,7 @@ const itemVariants = {
     scale: 1,
     y: 0,
     transition: {
-      type: "spring" as const,
+      type: "spring",
       stiffness: 100,
       damping: 20,
     },
@@ -49,7 +50,7 @@ export function SocialSection() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.25, 0.4, 0.25, 1] as const }}
+          transition={{ duration: 0.8, ease: [0.25, 0.4, 0.25, 1] }}
           className="text-center mb-10"
         >
           <motion.span
@@ -67,7 +68,7 @@ export function SocialSection() {
               initial={{ y: 100 }}
               whileInView={{ y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] as const, delay: 0.2 }}
+              transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1], delay: 0.2 }}
             >
               @LUCIFERAI
             </motion.span>
@@ -76,7 +77,7 @@ export function SocialSection() {
               initial={{ y: 100 }}
               whileInView={{ y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] as const, delay: 0.3 }}
+              transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1], delay: 0.3 }}
             >
               .IN
             </motion.span>
@@ -97,11 +98,16 @@ export function SocialSection() {
               whileHover={{
                 scale: 1.05,
                 zIndex: 10,
-                transition: { type: "spring" as const, stiffness: 300, damping: 20 },
+                transition: { type: "spring", stiffness: 300, damping: 20 },
               }}
               className="relative aspect-square rounded-xl overflow-hidden group cursor-pointer"
             >
-              <div aria-label={`Instagram post ${index + 1}`} role="img" className="absolute inset-0 bg-gradient-to-br from-fuchsia-500/30 via-cyan-300/10 to-white/5 transition-transform duration-500 group-hover:scale-110" />
+              <Image
+                src={post.image || "/placeholder.svg"}
+                alt={`Instagram post ${index + 1}`}
+                fill
+                className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+              />
               <motion.div
                 className="absolute inset-0 bg-[#AFFF00]/0 group-hover:bg-[#AFFF00]/20 flex items-center justify-center"
                 initial={{ opacity: 0 }}
@@ -137,7 +143,7 @@ export function SocialSection() {
             className="flex items-center gap-2 bg-[#AFFF00] text-[#121212] px-6 py-3 rounded-full font-bold text-sm tracking-wide relative overflow-hidden group"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            transition={{ type: "spring" as const, stiffness: 400, damping: 17 }}
+            transition={{ type: "spring", stiffness: 400, damping: 17 }}
           >
             <motion.div
               className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full"

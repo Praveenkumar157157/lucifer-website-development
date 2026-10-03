@@ -6,6 +6,7 @@ import { Footer } from "@/components/footer"
 function LuciferHero() {
   return (
     <section id="hero" className="relative flex min-h-[92vh] items-center overflow-hidden bg-[#08080b] px-6 pt-28 text-white">
+      <div className="absolute inset-0 bg-[url('/images/luciferai-home-background.png')] bg-cover bg-center opacity-45" aria-hidden="true" />
       <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,8,11,0.98)_0%,rgba(8,8,11,0.78)_42%,rgba(8,8,11,0.3)_100%),linear-gradient(180deg,rgba(8,8,11,0.35),rgba(8,8,11,0.94))]" aria-hidden="true" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_35%,rgba(168,85,247,0.22),transparent_32%),radial-gradient(circle_at_15%_75%,rgba(34,211,238,0.12),transparent_28%)]" aria-hidden="true" />
       <div className="relative mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
@@ -18,7 +19,7 @@ function LuciferHero() {
         <motion.div role="button" tabIndex={0} aria-label="Open LUCIFER AI chat" onClick={() => document.getElementById("ai-chat")?.scrollIntoView({ behavior: "smooth" })} onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") document.getElementById("ai-chat")?.scrollIntoView({ behavior: "smooth" }) }} className="relative mx-auto w-full max-w-sm cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-8 focus-visible:ring-offset-[#08080b]" initial={{ opacity: 0, y: 28, rotate: -3 }} animate={{ opacity: 1, y: [0, -10, 0], rotate: [-3, 2, -3] }} transition={{ opacity: { duration: 0.7 }, y: { duration: 4, repeat: Infinity, ease: "easeInOut" }, rotate: { duration: 4, repeat: Infinity, ease: "easeInOut" } }}>
           <motion.div className="absolute -inset-8 rounded-full bg-fuchsia-500/20 blur-3xl" animate={{ scale: [1, 1.12, 1], opacity: [0.45, 0.75, 0.45] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }} />
           <motion.div className="absolute -right-5 top-8 z-10 rounded-2xl border border-cyan-300/30 bg-[#10131c]/90 px-4 py-2 font-mono text-xs text-cyan-200 shadow-xl" initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: [0, 1, 1, 0], y: [8, 0, -4, -10] }} transition={{ duration: 5, repeat: Infinity, times: [0, 0.12, 0.8, 1] }}>hey, let&apos;s build</motion.div>
-          <div aria-hidden="true" className="relative mx-auto aspect-[4/5] w-full max-w-sm rounded-[40%] border border-cyan-300/20 bg-gradient-to-br from-fuchsia-500/20 via-cyan-300/10 to-transparent shadow-2xl shadow-fuchsia-950/30" />
+          <img src="/character-replacement.png" alt="LUCIFER AI character" className="relative w-full object-contain drop-shadow-2xl" />
         </motion.div>
       </div>
     </section>

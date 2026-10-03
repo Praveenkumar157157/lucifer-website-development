@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { GoogleSignupButton } from '@/components/google-signup-button';
 
 interface NavItem {
   id: number;
@@ -31,7 +30,6 @@ const NAV_ITEMS: NavItem[] = [
 export default function MagneticNav() {
   const pathname = usePathname();
   const [mounted, setMounted] = useState(false);
-  const [signupPromptOpen, setSignupPromptOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -125,57 +123,37 @@ export default function MagneticNav() {
 
   const isActive = (href: string) => pathname === href;
 
-  if (!mounted || pathname === "/sign-in") return null;
+  if (!mounted) return null;
 
   return (
     <div
       ref={containerRef}
       className="fixed inset-0 pointer-events-none z-40"
     >
-      <div className="pointer-events-auto fixed right-6 top-6 z-50 flex items-center gap-3">
-        <GoogleSignupButton />
-        <button
-          type="button"
-          aria-label={menuOpen ? 'Close navigation' : 'Open navigation'}
-          aria-expanded={menuOpen}
-          onClick={() => setMenuOpen((open) => !open)}
-          className="flex size-16 shrink-0 touch-manipulation flex-col items-center justify-center gap-2 rounded-full border-2 border-cyan-300/30 bg-black/60 shadow-lg shadow-cyan-950/30 backdrop-blur-md transition hover:scale-105 hover:border-cyan-300/80 hover:bg-cyan-300/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
-        >
-          <span className={`h-0.5 w-6 rounded-full bg-cyan-300 transition-transform ${menuOpen ? 'translate-y-2 rotate-45' : ''}`} />
-          <span className={`h-0.5 w-4 rounded-full bg-fuchsia-400 transition-opacity ${menuOpen ? 'opacity-0' : ''}`} />
-          <span className={`h-0.5 w-6 rounded-full bg-white transition-transform ${menuOpen ? '-translate-y-2 -rotate-45' : ''}`} />
-        </button>
-      </div>
-
-      {signupPromptOpen && (
-        <div className="pointer-events-auto fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-6 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="signup-prompt-title">
-          <div className="relative w-full max-w-sm rounded-3xl border border-white/15 bg-[#0d0d12] p-6 shadow-2xl shadow-cyan-950/40">
-            <button type="button" onClick={() => setSignupPromptOpen(false)} className="absolute right-4 top-4 text-2xl leading-none text-white/50 hover:text-white" aria-label="Close sign up prompt">×</button>
-            <p className="mb-2 font-mono text-xs uppercase tracking-[0.25em] text-cyan-300">Members area</p>
-            <h2 id="signup-prompt-title" className="mb-2 text-2xl font-bold text-white">Sign up to continue</h2>
-            <p className="mb-5 text-sm leading-6 text-white/60">Explore the homepage freely. Sign up with Google to open this section.</p>
-            <GoogleSignupButton />
-          </div>
-        </div>
-      )}
+      <button
+        type="button"
+        aria-label={menuOpen ? 'Close navigation' : 'Open navigation'}
+        aria-expanded={menuOpen}
+        onClick={() => setMenuOpen((open) => !open)}
+        className="pointer-events-auto fixed right-6 top-6 z-50 flex size-12 flex-col items-center justify-center gap-1.5 rounded-full border border-white/15 bg-black/35 backdrop-blur-md transition hover:border-cyan-300/60 hover:bg-cyan-300/10"
+      >
+        <span className={`block h-0.5 w-6 rounded-full bg-cyan-300 transition-transform ${menuOpen ? 'translate-y-2 rotate-45' : ''}`} />
+        <span className={`block h-0.5 w-4 rounded-full bg-fuchsia-400 transition-opacity ${menuOpen ? 'opacity-0' : ''}`} />
+        <span className={`block h-0.5 w-6 rounded-full bg-white transition-transform ${menuOpen ? '-translate-y-2 -rotate-45' : ''}`} />
+      </button>
 
       {menuOpen && (
-        <>
-          <button
-            type="button"
-            aria-label="Close navigation overlay"
-            onClick={() => setMenuOpen(false)}
-            className="pointer-events-auto fixed inset-0 z-40 cursor-default bg-black/45 backdrop-blur-[2px]"
-          />
-          <nav aria-label="Main navigation" className="pointer-events-auto fixed right-4 top-24 z-50 w-[min(22rem,calc(100vw-2rem))] overflow-hidden rounded-[2rem] border border-white/15 bg-[#0c0b14]/90 p-3 shadow-2xl shadow-cyan-950/40 backdrop-blur-2xl sm:right-6 sm:top-28">
-            <div className="flex items-center justify-between border-b border-white/10 px-4 pb-3 pt-2">
-              <div>
-                <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-cyan-300/70">Explore</p>
-                <p className="mt-1 text-sm font-semibold text-white">LUCIFER AI</p>
-              </div>
-              <span className="rounded-full border border-cyan-300/20 bg-cyan-300/10 px-2 py-1 font-mono text-[10px] text-cyan-200">{NAV_ITEMS.length} SECTIONS</span>
-            </div>
-            <div className="max-h-[min(65vh,30rem)] overflow-y-auto overscroll-contain py-2 pr-1 [scrollbar-color:rgba(103,232,249,.45)_transparent] [scrollbar-width:thin]">
+        <nav aria-label="Main navigation" className="pointer-events-auto fixed right-6 top-24 w-48 rounded-2xl border border-white/10 bg-[#0d0d12]/95 p-3 shadow-2xl shadow-cyan-950/30 backdrop-blur-xl">
+          {NAV_ITEMS.map((item) => (
+            <Link key={item.id} href={item.href} onClick={() => setMenuOpen(false)} className="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-semibold text-white/80 transition hover:bg-cyan-300/10 hover:text-cyan-300">
+              <span className="font-mono text-[10px] text-cyan-300/60">{String(item.id).padStart(2, '0')}</span>
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+      )}
+
+      <div className="relative h-full flex flex-col justify-center items-end pr-6 pointer-events-auto">
         {NAV_ITEMS.map((item) => {
           const state = itemStates[item.id];
           const active = isActive(item.href);
@@ -184,14 +162,7 @@ export default function MagneticNav() {
             <Link
               key={item.id}
               href={item.href}
-              onClick={(event) => {
-                if (item.href !== '/') {
-                  event.preventDefault();
-                  setMenuOpen(false);
-                  setSignupPromptOpen(true);
-                }
-              }}
-              className="group relative mb-4 block min-h-16 touch-manipulation rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4 transition-all duration-300 hover:border-cyan-300/40 hover:bg-cyan-300/[0.08] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 last:mb-0 sm:min-h-20 sm:px-6 sm:py-5"
+              className="group relative mb-16 last:mb-0 transition-all duration-300"
               style={{
                 transform: `translate(${state.x}px, ${state.y}px) scale(${state.scale})`,
                 opacity: state.opacity,
@@ -228,10 +199,7 @@ export default function MagneticNav() {
             </Link>
           );
         })}
-            </div>
-          </nav>
-        </>
-      )}
+      </div>
     </div>
   );
 }
