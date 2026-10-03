@@ -21,7 +21,7 @@ const itemVariants = {
     opacity: 1,
     y: 0,
     transition: {
-      type: "spring",
+      type: "spring" as const,
       stiffness: 100,
       damping: 20,
     },
@@ -53,7 +53,7 @@ export function Footer() {
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.25, 0.4, 0.25, 1] }}
+          transition={{ duration: 0.8, ease: [0.25, 0.4, 0.25, 1] as const }}
           className="text-center mb-12"
         >
           <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter leading-[0.9] overflow-hidden">
@@ -62,7 +62,7 @@ export function Footer() {
               initial={{ y: 100 }}
               whileInView={{ y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
+              transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] as const }}
             >
               READY TO
             </motion.span>
@@ -71,7 +71,7 @@ export function Footer() {
               initial={{ y: 100 }}
               whileInView={{ y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1], delay: 0.1 }}
+              transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] as const, delay: 0.1 }}
             >
               BUILD NEXT?
             </motion.span>
@@ -104,7 +104,7 @@ export function Footer() {
               className="bg-[#AFFF00] text-[#121212] px-6 py-3 rounded-xl font-bold text-sm tracking-wide whitespace-nowrap relative overflow-hidden"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              transition={{ type: "spring" as const, stiffness: 400, damping: 17 }}
               onClick={handleSubmit}
             >
               <motion.div
@@ -157,7 +157,7 @@ export function Footer() {
               <ul className="space-y-2">
                 {section.links.map((item) => (
                   <li key={item}>
-                    <motion.div whileHover={{ x: 4 }} transition={{ type: "spring", stiffness: 400, damping: 17 }}>
+                    <motion.div whileHover={{ x: 4 }} transition={{ type: "spring" as const, stiffness: 400, damping: 17 }}>
                       <Link
                         href="#"
                         className="text-white/60 hover:text-cyan-300 font-mono text-xs transition-colors inline-block"
@@ -182,7 +182,7 @@ export function Footer() {
           <motion.div
             className="flex items-center gap-2"
             whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 400, damping: 17 }}
+            transition={{ type: "spring" as const, stiffness: 400, damping: 17 }}
           >
             <span className="flex items-center gap-3 text-xl font-black">
               <span className="flex size-9 items-center justify-center rounded-xl border border-fuchsia-400/40 bg-fuchsia-400/10 font-mono text-xs text-fuchsia-300">AI</span>

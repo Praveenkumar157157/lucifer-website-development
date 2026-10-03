@@ -36,7 +36,7 @@ const imageVariants = {
     scale: 1,
     y: 0,
     transition: {
-      type: "spring",
+      type: "spring" as const,
       stiffness: 100,
       damping: 20,
     },
@@ -50,7 +50,7 @@ const cardVariants = {
     y: 0,
     scale: 1,
     transition: {
-      type: "spring",
+      type: "spring" as const,
       stiffness: 100,
       damping: 20,
     },
@@ -70,7 +70,7 @@ export function LifestyleSection() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.25, 0.4, 0.25, 1] }}
+          transition={{ duration: 0.8, ease: [0.25, 0.4, 0.25, 1] as const }}
           className="text-center mb-16"
         >
           <motion.span
@@ -88,7 +88,7 @@ export function LifestyleSection() {
               initial={{ y: 100 }}
               whileInView={{ y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1], delay: 0.15 }}
+              transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] as const, delay: 0.15 }}
             >
               GIGI ON THE{" "}
             </motion.span>
@@ -97,7 +97,7 @@ export function LifestyleSection() {
               initial={{ y: 100 }}
               whileInView={{ y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1], delay: 0.25 }}
+              transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] as const, delay: 0.25 }}
             >
               GRIND
             </motion.span>
@@ -118,7 +118,7 @@ export function LifestyleSection() {
               whileHover={{
                 scale: 1.03,
                 zIndex: 10,
-                transition: { type: "spring", stiffness: 300, damping: 20 },
+                transition: { type: "spring" as const, stiffness: 300, damping: 20 },
               }}
               className={`relative overflow-hidden rounded-2xl bg-white/5 ${
                 img.aspect === "portrait" ? "row-span-2" : ""
@@ -158,7 +158,7 @@ export function LifestyleSection() {
               whileHover={{
                 y: -8,
                 scale: 1.02,
-                transition: { type: "spring", stiffness: 400, damping: 17 },
+                transition: { type: "spring" as const, stiffness: 400, damping: 17 },
               }}
               className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 cursor-pointer"
             >
@@ -166,7 +166,7 @@ export function LifestyleSection() {
                 <motion.div
                   className="w-10 h-10 rounded-full bg-[#AFFF00]/20 flex items-center justify-center"
                   whileHover={{ scale: 1.1, rotate: 5 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                  transition={{ type: "spring" as const, stiffness: 400, damping: 17 }}
                 >
                   <span className="text-[#AFFF00] font-bold text-sm">{post.handle.charAt(1).toUpperCase()}</span>
                 </motion.div>
@@ -183,7 +183,7 @@ export function LifestyleSection() {
                   fill="currentColor"
                   viewBox="0 0 24 24"
                   whileHover={{ scale: 1.2 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                  transition={{ type: "spring" as const, stiffness: 400, damping: 17 }}
                 >
                   <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
                 </motion.svg>
