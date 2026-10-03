@@ -2,7 +2,6 @@
 
 import { motion, useScroll, useTransform, useSpring } from "framer-motion"
 import { useRef } from "react"
-import Image from "next/image"
 
 const springConfig = { stiffness: 100, damping: 30, restDelta: 0.001 }
 
@@ -228,14 +227,7 @@ export function HeroSection() {
                   ease: "easeInOut",
                 }}
               >
-                <Image
-                  src="/character-replacement.png"
-                  alt="LUCIFER AI character"
-  width={1500}
-  height={1675}
-                  className="relative z-10 bg-transparent drop-shadow-2xl"
-                  priority
-                />
+                <div aria-hidden="true" className="relative z-10 aspect-[4/5] w-full rounded-[40%] border border-cyan-300/20 bg-gradient-to-br from-fuchsia-500/20 via-cyan-300/10 to-transparent drop-shadow-2xl" />
               </motion.div>
             </motion.div>
           </motion.div>

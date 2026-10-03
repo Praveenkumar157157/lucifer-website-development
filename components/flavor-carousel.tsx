@@ -4,7 +4,6 @@ import type React from "react"
 
 import { motion, AnimatePresence, useSpring } from "framer-motion"
 import { useState } from "react"
-import Image from "next/image"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
 const flavors = [
@@ -13,7 +12,6 @@ const flavors = [
     name: "Lemon Lime",
     tagline: "Citrus Shock",
     description: "A zesty explosion of natural lemon and lime that wakes you up instantly.",
-    image: "/images/drink2.png",
     bgColor: "from-[#84cc16]/20 via-[#84cc16]/10 to-transparent",
     accentColor: "#84cc16",
   },
@@ -22,7 +20,6 @@ const flavors = [
     name: "Pineapple Coconut",
     tagline: "Tropical Rush",
     description: "Island vibes with every sip. Transport yourself to paradise.",
-    image: "/images/drink1.png",
     bgColor: "from-[#f59e0b]/20 via-[#f59e0b]/10 to-transparent",
     accentColor: "#f59e0b",
   },
@@ -31,7 +28,6 @@ const flavors = [
     name: "Mystery",
     tagline: "Coming Soon",
     description: "Something epic is brewing... Stay tuned.",
-    image: "/mystery-energy-drink-can-silhouette.jpg",
     bgColor: "from-[#AFFF00]/20 via-[#AFFF00]/5 to-transparent",
     accentColor: "#AFFF00",
     mystery: true,
@@ -195,12 +191,7 @@ export function FlavorCarousel() {
                       whileHover={{ scale: 1.05 }}
                       transition={{ type: "spring", stiffness: 300, damping: 20 }}
                     >
-                      <Image
-                        src={currentFlavor.image || "/placeholder.svg"}
-                        alt={currentFlavor.name}
-                        fill
-                        className={`object-contain ${currentFlavor.mystery ? "blur-sm grayscale" : ""}`}
-                      />
+                <div aria-label={currentFlavor.name} role="img" className="h-64 w-48 rounded-[2rem] border border-white/20 bg-gradient-to-br from-white/20 via-white/5 to-transparent shadow-2xl shadow-black/30" />
                       {currentFlavor.mystery && (
                         <motion.div
                           className="absolute inset-0 flex items-center justify-center"

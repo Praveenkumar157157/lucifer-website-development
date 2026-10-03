@@ -127,10 +127,9 @@ export function LifestyleSection() {
               <div
                 className={`${img.aspect === "portrait" ? "aspect-[3/4]" : img.aspect === "landscape" ? "aspect-[16/9]" : "aspect-square"} relative group`}
               >
-                <motion.img
-                  src={`/placeholder.svg?height=${img.aspect === "portrait" ? 400 : 300}&width=${img.aspect === "landscape" ? 600 : 300}&query=${img.query}`}
-                  alt=""
-                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                <motion.div
+                  aria-hidden="true"
+                  className="h-full w-full bg-gradient-to-br from-fuchsia-500/25 via-cyan-300/10 to-white/5 transition-all duration-700 group-hover:scale-110"
                   whileHover={{ scale: 1.1 }}
                   transition={{ duration: 0.6 }}
                 />
