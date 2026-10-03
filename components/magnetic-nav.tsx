@@ -32,7 +32,7 @@ export default function MagneticNav() {
   const [mounted, setMounted] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const mousePosRef = useRef({ x: 0, y: 0 });
   const [itemStates, setItemStates] = useState<Record<number, ItemState>>(
     Object.fromEntries(NAV_ITEMS.map((item) => [item.id, { x: 0, y: 0, scale: 1, opacity: 0.6 }]))
   );
@@ -46,7 +46,7 @@ export default function MagneticNav() {
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({ x: e.clientX, y: e.clientY });
+      mousePosRef.current = { x: e.clientX, y: e.clientY };
     };
 
     window.addEventListener('mousemove', handleMouseMove);
@@ -75,8 +75,8 @@ export default function MagneticNav() {
           const itemY = containerCenterY + (item.id - (NAV_ITEMS.length + 1) / 2) * 58;
           const itemX = rect.right - 60;
 
-          const distX = mousePos.x - itemX;
-          const distY = mousePos.y - itemY;
+          const distX = mousePosRef.current.x - itemX;
+          const distY = mousePosRef.current.y - itemY;
           const distance = Math.sqrt(distX * distX + distY * distY);
 
           let targetX = 0;
@@ -119,7 +119,7 @@ export default function MagneticNav() {
     animationId = requestAnimationFrame(animate);
 
     return () => cancelAnimationFrame(animationId);
-  }, [mousePos]);
+  }, []);
 
   const isActive = (href: string) => pathname === href;
 
