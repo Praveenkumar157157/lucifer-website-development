@@ -17,51 +17,155 @@ interface MessageListProps {
   isLoaded: boolean
 }
 
-export function MessageList({ messages, isStreaming, error, onRetry, isLoaded }: MessageListProps) {
+export function MessageList({
+  messages,
+  isStreaming,
+  error,
+  onRetry,
+  isLoaded,
+}: MessageListProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const shouldFollowRef = useRef(true)
   const previousCountRef = useRef(0)
 
-  useEffect(() => {
+useEffect(() => {
     const container = containerRef.current
     if (!container) return
-    const lastMessage = messages[messages.length - 1]
-    if (messages.length > previousCountRef.current && (lastMessage?.role === "user" || (lastMessage?.role === "assistant" && lastMessage.content === ""))) shouldFollowRef.current = true
-    if (shouldFollowRef.current) container.scrollTop = container.scrollHeight
-    previousCountRef.current = messages.length
+
+const lastMessage = messages[messages.length - 1]
+
+if (
+      messages.length > previousCountRef.current &&
+      (lastMessage?.role === "user" ||
+        (lastMessage?.role === "assistant" &&
+          lastMessage.content === ""))
+    ) {
+      shouldFollowRef.current = true
+    }
+
+if (shouldFollowRef.current) {
+      container.scrollTop = container.scrollHeight
+    }
+
+previousCountRef.current = messages.length
   }, [messages, error, isLoaded])
 
-  const handleScroll = () => {
+const handleScroll = () => {
     const container = containerRef.current
     if (!container) return
-    const distance = container.scrollHeight - container.scrollTop - container.clientHeight
-    shouldFollowRef.current = distance < 100
+
+const distance =
+      container.scrollHeight -
+      container.scrollTop -
+      container.clientHeight
+
+shouldFollowRef.current = distance < 100
   }
 
-  const lastMessage = messages[messages.length - 1]
-  const showTyping = isStreaming && (!lastMessage || lastMessage.role === "user" || lastMessage.content === "")
+const lastMessage = messages[messages.length - 1]
 
-  if (!isLoaded) return <div className="absolute inset-0 flex items-center justify-center" role="status" aria-label="Loading Lucifer AI"><AnimatedOrb size={64} /></div>
+const showTyping =
+    isStreaming &&
+    (!lastMessage ||
+      lastMessage.role === "user" ||
+      lastMessage.content === "")
 
-  return (
-    <div ref={containerRef} onScroll={handleScroll} className="absolute inset-0 overflow-y-auto px-6 pb-48 pt-16" role="log" aria-label="Lucifer AI chat messages" aria-live="polite" aria-relevant="additions text">
+if (!isLoaded) {
+    return (
+      <div
+        className="absolute inset-0 flex items-center justify-center"
+        role="status"
+        aria-label="Loading Lucifer AI"
+      >
+        <AnimatedOrb size={64} />
+      </div>
+    )
+  }
+
+return (
+    <div
+      ref={containerRef}
+      onScroll={handleScroll}
+      className="absolute inset-0 overflow-y-auto px-6 pb-48 pt-16"
+      role="log"
+      aria-label="Lucifer AI chat messages"
+      aria-live="polite"
+      aria-relevant="additions text"
+    >
       {messages.length === 0 && !error && !isStreaming && (
         <div className="flex h-full flex-col items-center justify-center text-center">
-          <div className="orb-intro mb-4"><AnimatedOrb size={128} /></div>
-          <p className="lucifer-title text-blur-intro text-lg font-medium">Hi, my name is Lucifer AI</p>
-          <p className="lucifer-subtitle text-blur-intro-delay mt-1 text-sm">Send a message to begin chatting with the AI assistant</p>
+          <div className="orb-intro mb-4">
+            <AnimatedOrb size={128} />
+          </div>
+
+<p className="lucifer-title text-blur-intro text-lg font-medium">
+            Hi, my name is Lucifer AI
+          </p>
+
+<p className="lucifer-subtitle text-blur-intro-delay mt-1 text-sm">
+            Send a message to begin chatting with the AI assistant
+          </p>
         </div>
       )}
-      <div className="space-y-4">
-        {messages.filter((message) => !(isStreaming && message.id === lastMessage?.id && message.role === "assistant" && message.content === "")).map((message) => (
-          <MessageBubble key={message.id} message={message} isStreaming={isStreaming && message.role === "assistant" && message.id === lastMessage?.id} />
-        ))}
-        {showTyping && <TypingIndicator />}
-        {error && (
-          <div className="flex items-center gap-3 rounded-xl border border-red-200 bg-red-50 p-4" role="alert">
-            <AlertCircle className="h-5 w-5 shrink-0 text-red-600" aria-hidden="true" />
-            <div className="min-w-0 flex-1"><p className="text-sm font-medium text-red-900">Unable to complete the response</p><p className="mt-1 break-words text-xs text-red-700">{error}</p></div>
-            <Button type="button" variant="ghost" size="sm" onClick={onRetry} disabled={isStreaming} className="shrink-0 text-red-700 hover:bg-red-100"><RefreshCw className="mr-1 h-4 w-4" aria-hidden="true" />Retry</Button>
+
+<div className="space-y-4">
+        {messages
+          .filter(
+            (message) =>
+              !(
+                isStreaming &&
+                message.id === lastMessage?.id &&
+                message.role === "assistant" &&
+                message.content === ""
+              ),
+          )
+          .map((message) => (
+            <MessageBubble
+              key={message.id}
+              message={message}
+              isStreaming={
+                isStreaming &&
+                message.role === "assistant" &&
+                message.id === lastMessage?.id
+              }
+            />
+          ))}
+
+{showTyping && <TypingIndicator />}
+
+{error && (
+          <div
+            className="flex items-center gap-3 rounded-xl border border-red-200 bg-red-50 p-4"
+            role="alert"
+          >
+            <AlertCircle
+              className="h-5 w-5 shrink-0 text-red-600"
+              aria-hidden="true"
+            />
+
+<div className="min-w-0 flex-1">
+              <p className="text-sm font-medium text-red-900">
+                Unable to complete the response
+              </p>
+              <p className="mt-1 break-words text-xs text-red-700">
+                {error}
+              </p>
+            </div>
+
+<Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              onClick={onRetry}
+              disabled={isStreaming}
+              className="shrink-0 text-red-700 hover:bg-red-100"
+            >
+              <RefreshCw
+                className="mr-1 h-4 w-4"
+                aria-hidden="true"
+              />
+              Retry
+            </Button>
           </div>
         )}
       </div>
