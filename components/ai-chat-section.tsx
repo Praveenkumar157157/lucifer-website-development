@@ -9,7 +9,7 @@ function getDisplayText(text: string) {
   if (!text.includes("data:")) return text
 
   const deltas: string[] = []
-  const dataPattern = /data:\s*(\{[\\s\\S]*?\})(?=\s*data:|\s*\[DONE\]|$)/g
+  const dataPattern = /data:\s*(\{[\s\S]*?\})(?=\s*data:|\s*\[DONE\]|$)/g
   let match: RegExpExecArray | null
 
   while ((match = dataPattern.exec(text)) !== null) {
