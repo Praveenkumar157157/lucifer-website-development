@@ -153,7 +153,8 @@ export default function MagneticNav() {
         </nav>
       )}
 
-      <div className="relative h-full flex flex-col justify-center items-end pr-6 pointer-events-auto">
+      {menuOpen && (
+        <div className="relative h-full flex flex-col justify-center items-end pr-6 pointer-events-auto">
         {NAV_ITEMS.map((item) => {
           const state = itemStates[item.id];
           const active = isActive(item.href);
@@ -199,7 +200,8 @@ export default function MagneticNav() {
             </Link>
           );
         })}
-      </div>
+        </div>
+      )}
     </div>
   );
 }
