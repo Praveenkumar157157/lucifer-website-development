@@ -123,7 +123,7 @@ export default function MagneticNav() {
 
   const isActive = (href: string) => pathname === href;
 
-  if (!mounted) return null;
+  if (!mounted || pathname === "/sign-in") return null;
 
   return (
     <div
