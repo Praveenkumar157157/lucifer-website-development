@@ -66,8 +66,20 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "The OpenRouter request failed." }, { status: 502 })
     }
 
-    const data = (await response.json()) as { choices?: Array<{ message?: { content?: string } }> }
-    const text = data.choices?.[0]?.message?.content ?? ""
+    const data = (await response.json()) as { choices?: Array<{ message?: { content?: string | Array<{ type?: string; text?: string }> } }> }
+    const content = data.choices?.[0]?.message?.content
+    const text = typeof content === "string"
+      ? content
+      : Array.isArray(content)
+        ? content.filter((part) => part.type === "text").map((part) => part.text ?? "").join("")
+        : ""
+
+    if (request.headers.get("accept")?.includes("text/plain") || new URL(request.url).searchParams.get("format") === "text") {
+      return new NextResponse(text, {
+        headers: { "Content-Type": "text/plain; charset=utf-8" },
+      })
+    }
+
     const stream = createUIMessageStream({
       execute: ({ writer }) => {
         const textId = "openrouter-text"
