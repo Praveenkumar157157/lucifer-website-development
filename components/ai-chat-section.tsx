@@ -8,20 +8,20 @@ import { useState } from "react"
 function getDisplayText(text: string) {
   if (!text.includes("data:")) return text
 
-  return text
-    .split("data:")
-    .slice(1)
-    .map((entry) => entry.trim())
-    .filter((entry) => entry && entry !== "[DONE]")
-    .map((entry) => {
-      try {
-        const payload = JSON.parse(entry) as { delta?: string }
-        return payload.delta ?? ""
-      } catch {
-        return ""
-      }
-    })
-    .join("")
+  const deltas: string[] = []
+  const dataPattern = /data:\s*(\{[\\s\\S]*?\})(?=\s*data:|\s*\[DONE\]|$)/g
+  let match: RegExpExecArray | null
+
+  while ((match = dataPattern.exec(text)) !== null) {
+    try {
+      const payload = JSON.parse(match[1]) as { delta?: string }
+      if (payload.delta) deltas.push(payload.delta)
+    } catch {
+      // Ignore malformed stream frames and keep any valid text frames.
+    }
+  }
+
+  return deltas.join("") || text
 }
 
 export function AiChatSection() {
