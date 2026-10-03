@@ -139,7 +139,7 @@ export default function MagneticNav() {
           aria-label={menuOpen ? 'Close navigation' : 'Open navigation'}
           aria-expanded={menuOpen}
           onClick={() => setMenuOpen((open) => !open)}
-          className="flex size-12 flex-col items-center justify-center gap-1.5 rounded-full border border-white/15 bg-black/40 backdrop-blur-md transition hover:border-cyan-300/60 hover:bg-cyan-300/10"
+          className="flex size-16 shrink-0 touch-manipulation flex-col items-center justify-center gap-2 rounded-full border-2 border-cyan-300/30 bg-black/60 shadow-lg shadow-cyan-950/30 backdrop-blur-md transition hover:scale-105 hover:border-cyan-300/80 hover:bg-cyan-300/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
         >
           <span className={`h-0.5 w-6 rounded-full bg-cyan-300 transition-transform ${menuOpen ? 'translate-y-2 rotate-45' : ''}`} />
           <span className={`h-0.5 w-4 rounded-full bg-fuchsia-400 transition-opacity ${menuOpen ? 'opacity-0' : ''}`} />
@@ -191,7 +191,7 @@ export default function MagneticNav() {
                   setSignupPromptOpen(true);
                 }
               }}
-              className="group relative mb-16 last:mb-0 transition-all duration-300"
+              className="group relative mb-4 block min-h-16 touch-manipulation rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4 transition-all duration-300 hover:border-cyan-300/40 hover:bg-cyan-300/[0.08] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 last:mb-0 sm:min-h-20 sm:px-6 sm:py-5"
               style={{
                 transform: `translate(${state.x}px, ${state.y}px) scale(${state.scale})`,
                 opacity: state.opacity,
