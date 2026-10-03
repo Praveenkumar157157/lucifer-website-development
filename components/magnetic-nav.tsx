@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -8,6 +8,13 @@ interface NavItem {
   id: number;
   label: string;
   href: string;
+}
+
+interface ItemState {
+  x: number;
+  y: number;
+  scale: number;
+  opacity: number;
 }
 
 const NAV_ITEMS: NavItem[] = [
@@ -24,16 +31,103 @@ export default function MagneticNav() {
   const pathname = usePathname();
   const [mounted, setMounted] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const mousePosRef = useRef({ x: 0, y: 0 });
+  const [itemStates, setItemStates] = useState<Record<number, ItemState>>(
+    Object.fromEntries(NAV_ITEMS.map((item) => [item.id, { x: 0, y: 0, scale: 1, opacity: 0.6 }]))
+  );
+  const velocitiesRef = useRef<Record<number, { x: number; y: number }>>(
+    Object.fromEntries(NAV_ITEMS.map((item) => [item.id, { x: 0, y: 0 }]))
+  );
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      mousePosRef.current = { x: e.clientX, y: e.clientY };
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  useEffect(() => {
+    let animationId: number;
+
+    const animate = () => {
+      if (!containerRef.current) return;
+
+      const container = containerRef.current;
+      const rect = container.getBoundingClientRect();
+      const containerCenterX = rect.left + rect.width / 2;
+      const containerCenterY = rect.top + rect.height / 2;
+
+      setItemStates((prev) => {
+        const newStates = { ...prev };
+        const MAGNETIC_RADIUS = 150;
+        const SPRING_CONSTANT = 0.2;
+        const FRICTION = 0.92;
+        const MAX_OFFSET = 40;
+
+        NAV_ITEMS.forEach((item) => {
+          const itemY = containerCenterY + (item.id - (NAV_ITEMS.length + 1) / 2) * 58;
+          const itemX = rect.right - 60;
+
+          const distX = mousePosRef.current.x - itemX;
+          const distY = mousePosRef.current.y - itemY;
+          const distance = Math.sqrt(distX * distX + distY * distY);
+
+          let targetX = 0;
+          let targetY = 0;
+          let scale = 1;
+          let opacity = 0.6;
+
+          if (distance < MAGNETIC_RADIUS) {
+            const attractForce = 1 - distance / MAGNETIC_RADIUS;
+            const normalX = distX / distance || 0;
+            const normalY = distY / distance || 0;
+
+            targetX = normalX * Math.min(attractForce * MAX_OFFSET, MAX_OFFSET);
+            targetY = normalY * Math.min(attractForce * MAX_OFFSET, MAX_OFFSET);
+            scale = 1 + attractForce * 0.3;
+            opacity = 0.8 + attractForce * 0.2;
+          }
+
+          // Spring physics
+          const vel = velocitiesRef.current[item.id];
+          vel.x += (targetX - prev[item.id].x) * SPRING_CONSTANT;
+          vel.y += (targetY - prev[item.id].y) * SPRING_CONSTANT;
+          vel.x *= FRICTION;
+          vel.y *= FRICTION;
+
+          newStates[item.id] = {
+            x: prev[item.id].x + vel.x,
+            y: prev[item.id].y + vel.y,
+            scale: prev[item.id].scale + (scale - prev[item.id].scale) * 0.1,
+            opacity: prev[item.id].opacity + (opacity - prev[item.id].opacity) * 0.1,
+          };
+        });
+
+        return newStates;
+      });
+
+      animationId = requestAnimationFrame(animate);
+    };
+
+    animationId = requestAnimationFrame(animate);
+
+    return () => cancelAnimationFrame(animationId);
+  }, []);
 
   if (!mounted || pathname === "/sign-in") return null;
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-40">
+    <div
+      ref={containerRef}
+      className="fixed inset-0 pointer-events-none z-40"
+    >
       <button
         type="button"
         aria-label={menuOpen ? 'Close navigation' : 'Open navigation'}
