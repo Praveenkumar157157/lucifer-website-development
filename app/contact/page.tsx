@@ -1,3 +1,4 @@
+import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 
 const services = [
@@ -16,6 +17,7 @@ const services = [
 export default function ContactPage() {
   return (
     <main className="min-h-screen overflow-hidden bg-[#08080b] text-white">
+      <Navigation />
       <section className="relative mx-auto max-w-6xl px-6 pb-28 pt-36 sm:pt-44">
         <div className="pointer-events-none absolute -right-32 top-28 size-96 rounded-full bg-fuchsia-500/15 blur-3xl" />
         <div className="pointer-events-none absolute left-0 top-96 size-72 rounded-full bg-cyan-400/10 blur-3xl" />
