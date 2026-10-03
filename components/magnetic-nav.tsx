@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { GoogleSignupButton } from '@/components/google-signup-button';
 
 interface NavItem {
   id: number;
@@ -144,6 +145,8 @@ export default function MagneticNav() {
 
       {menuOpen && (
         <nav aria-label="Main navigation" className="pointer-events-auto fixed right-6 top-24 w-48 rounded-2xl border border-white/10 bg-[#0d0d12]/95 p-3 shadow-2xl shadow-cyan-950/30 backdrop-blur-xl">
+          <GoogleSignupButton />
+          <div className="my-3 border-t border-white/10" />
           {NAV_ITEMS.map((item) => (
             <Link key={item.id} href={item.href} onClick={() => setMenuOpen(false)} className="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-semibold text-white/80 transition hover:bg-cyan-300/10 hover:text-cyan-300">
               <span className="font-mono text-[10px] text-cyan-300/60">{String(item.id).padStart(2, '0')}</span>
