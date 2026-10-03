@@ -121,8 +121,6 @@ export default function MagneticNav() {
     return () => cancelAnimationFrame(animationId);
   }, []);
 
-  const isActive = (href: string) => pathname === href;
-
   if (!mounted || pathname === "/sign-in") return null;
 
   return (
@@ -153,55 +151,7 @@ export default function MagneticNav() {
         </nav>
       )}
 
-      {menuOpen && (
-        <div className="relative h-full flex flex-col justify-center items-end pr-6 pointer-events-auto">
-        {NAV_ITEMS.map((item) => {
-          const state = itemStates[item.id];
-          const active = isActive(item.href);
 
-          return (
-            <Link
-              key={item.id}
-              href={item.href}
-              className="group relative mb-16 last:mb-0 transition-all duration-300"
-              style={{
-                transform: `translate(${state.x}px, ${state.y}px) scale(${state.scale})`,
-                opacity: state.opacity,
-              }}
-            >
-              <div className="flex flex-col items-end gap-2">
-                {/* Glowing dot for active state */}
-                {active && (
-                  <div className="absolute -right-12 top-1/2 -translate-y-1/2 flex items-center gap-2">
-                    <div className="w-0.5 h-8 bg-gradient-to-b from-transparent via-cyan-400 to-transparent" />
-                    <div className="w-2 h-2 rounded-full bg-cyan-400 shadow-lg shadow-cyan-400/50" />
-                  </div>
-                )}
-
-                {/* Index number */}
-                <div className="text-[10px] font-mono text-gray-500 group-hover:text-cyan-400 transition-colors duration-200 tracking-widest">
-                  {String(item.id).padStart(2, '0')}
-                </div>
-
-                {/* Label */}
-                <div className="text-xs font-bold uppercase tracking-wider text-white group-hover:text-cyan-300 transition-colors duration-200 whitespace-nowrap">
-                  {item.label}
-                </div>
-
-                {/* Indicator line */}
-                <div
-                  className="h-0.5 bg-gradient-to-l from-cyan-400 to-transparent transition-all duration-300"
-                  style={{
-                    width: active || state.scale > 1.1 ? '48px' : '32px',
-                    opacity: active ? 1 : 0.4,
-                  }}
-                />
-              </div>
-            </Link>
-          );
-        })}
-        </div>
-      )}
     </div>
   );
 }
