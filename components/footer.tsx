@@ -185,7 +185,7 @@ export function Footer() {
             transition={{ type: "spring" as const, stiffness: 400, damping: 17 }}
           >
             <span className="flex items-center gap-3 text-xl font-black">
-              <span className="size-9 overflow-hidden rounded-xl border border-fuchsia-400/40"><img src="/images/luciferai-brand-logo.jpg" alt="LUCIFER AI cat mascot logo" className="size-full object-cover" /></span>
+              <span className="flex size-9 items-center justify-center rounded-xl border border-fuchsia-400/40 bg-fuchsia-400/10 font-black text-fuchsia-300">L</span>
               <span><span className="text-white">LUCIFER</span> <span className="text-cyan-300">AI</span></span>
             </span>
           </motion.div>
