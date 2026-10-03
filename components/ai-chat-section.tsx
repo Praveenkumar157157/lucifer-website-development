@@ -5,6 +5,25 @@ import { DefaultChatTransport } from "ai"
 import { ArrowDown, Bot, Loader2, Send, Sparkles } from "lucide-react"
 import { useState } from "react"
 
+function getDisplayText(text: string) {
+  if (!text.includes("data:")) return text
+
+  return text
+    .split("data:")
+    .slice(1)
+    .map((entry) => entry.trim())
+    .filter((entry) => entry && entry !== "[DONE]")
+    .map((entry) => {
+      try {
+        const payload = JSON.parse(entry) as { delta?: string }
+        return payload.delta ?? ""
+      } catch {
+        return ""
+      }
+    })
+    .join("")
+}
+
 export function AiChatSection() {
   const [input, setInput] = useState("")
   const { messages, sendMessage, status } = useChat({
@@ -29,7 +48,7 @@ export function AiChatSection() {
         </div>
         <div className="grid overflow-hidden rounded-3xl border border-white/10 bg-black/30 lg:grid-cols-[0.7fr_1.3fr]">
           <div className="border-b border-white/10 bg-white/[0.03] p-7 lg:border-b-0 lg:border-r"><div className="flex items-center gap-3"><div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-fuchsia-400/15 text-fuchsia-300"><Bot className="h-6 w-6" /></div><div><p className="font-semibold">LUCIFER AI assistant</p><p className="font-mono text-xs text-white/35">developer mode / ready</p></div></div><div className="mt-10 space-y-3 text-sm text-white/55"><p className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">Try asking:</p>{["How do I build my first API?", "Explain a Python idea simply", "Help me plan an AI project"].map((prompt) => <button key={prompt} type="button" onClick={() => setInput(prompt)} className="block w-full rounded-2xl border border-white/10 px-4 py-3 text-left transition hover:border-cyan-300/40 hover:text-cyan-200">{prompt}<ArrowDown className="mt-1 h-3 w-3 opacity-40" /></button>)}</div></div>
-          <div className="flex min-h-[480px] flex-col"><div className="flex-1 space-y-5 overflow-y-auto p-6">{messages.length === 0 ? <div className="flex h-full min-h-72 flex-col items-center justify-center text-center"><div className="mb-4 rounded-full border border-fuchsia-400/20 bg-fuchsia-400/10 p-4"><Sparkles className="h-7 w-7 text-fuchsia-300" /></div><p className="font-semibold">Your next build starts here.</p><p className="mt-2 max-w-sm text-sm text-white/40">Ask LUCIFER AI anything about code, AI, APIs, or your next experiment.</p></div> : messages.map((message) => <div key={message.id} className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}><div className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-6 ${message.role === "user" ? "bg-fuchsia-400/15 text-fuchsia-100" : "bg-white/[0.06] text-white/75"}`}>{message.parts?.map((part, index) => part.type === "text" ? <span key={`${message.id}-${index}`}>{part.text}</span> : null)}</div></div>)}</div><form onSubmit={submitMessage} className="border-t border-white/10 p-4"><div className="flex gap-2 rounded-2xl border border-white/10 bg-white/[0.04] p-2 focus-within:border-cyan-300/40"><input value={input} onChange={(event) => setInput(event.target.value)} placeholder="Ask LUCIFER AI something..." className="min-w-0 flex-1 bg-transparent px-3 text-sm text-white outline-none placeholder:text-white/30" aria-label="Message LUCIFER AI" /><button type="submit" disabled={!input.trim() || isLoading} className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white text-black transition hover:bg-cyan-200 disabled:opacity-40" aria-label="Send message">{isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}</button></div></form></div>
+          <div className="flex min-h-[480px] flex-col"><div className="flex-1 space-y-5 overflow-y-auto p-6">{messages.length === 0 ? <div className="flex h-full min-h-72 flex-col items-center justify-center text-center"><div className="mb-4 rounded-full border border-fuchsia-400/20 bg-fuchsia-400/10 p-4"><Sparkles className="h-7 w-7 text-fuchsia-300" /></div><p className="font-semibold">Your next build starts here.</p><p className="mt-2 max-w-sm text-sm text-white/40">Ask LUCIFER AI anything about code, AI, APIs, or your next experiment.</p></div> : messages.map((message) => <div key={message.id} className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}><div className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-6 ${message.role === "user" ? "bg-fuchsia-400/15 text-fuchsia-100" : "bg-white/[0.06] text-white/75"}`}>{message.parts?.map((part, index) => part.type === "text" ? <span key={`${message.id}-${index}`}>{getDisplayText(part.text)}</span> : null)}</div></div>)}</div><form onSubmit={submitMessage} className="border-t border-white/10 p-4"><div className="flex gap-2 rounded-2xl border border-white/10 bg-white/[0.04] p-2 focus-within:border-cyan-300/40"><input value={input} onChange={(event) => setInput(event.target.value)} placeholder="Ask LUCIFER AI something..." className="min-w-0 flex-1 bg-transparent px-3 text-sm text-white outline-none placeholder:text-white/30" aria-label="Message LUCIFER AI" /><button type="submit" disabled={!input.trim() || isLoading} className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white text-black transition hover:bg-cyan-200 disabled:opacity-40" aria-label="Send message">{isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}</button></div></form></div>
         </div>
       </div>
     </section>
