@@ -12,12 +12,11 @@ interface NavItem {
 
 const NAV_ITEMS: NavItem[] = [
   { id: 1, label: 'HOME', href: '/' },
-  { id: 2, label: 'AI', href: '/ai' },
-  { id: 3, label: 'APIS', href: '/apis' },
-  { id: 4, label: 'PROJECTS', href: '/projects' },
-  { id: 5, label: 'GAMES', href: '/games' },
-  { id: 6, label: 'FREE MONEY', href: '/free-money' },
-  { id: 7, label: 'CONTACT', href: '/contact' },
+  { id: 2, label: 'ABOUT', href: '/about' },
+  { id: 3, label: 'API EXPLORER', href: '/api-explorer' },
+  { id: 4, label: 'CHAT', href: '/chat' },
+  { id: 5, label: 'SKILLS', href: '/skills' },
+  { id: 6, label: 'CONTACT', href: '/contact' },
 ];
 
 export default function MagneticNav() {
