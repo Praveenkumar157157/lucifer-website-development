@@ -18,9 +18,13 @@ interface ItemState {
 }
 
 const NAV_ITEMS: NavItem[] = [
-  { id: 1, label: 'WORK', href: '/work' },
-  { id: 2, label: 'ABOUT', href: '/about' },
-  { id: 3, label: 'CONTACT', href: '/contact' },
+  { id: 1, label: 'HOME', href: '/' },
+  { id: 2, label: 'AI', href: '/ai' },
+  { id: 3, label: 'APIS', href: '/apis' },
+  { id: 4, label: 'PROJECTS', href: '/projects' },
+  { id: 5, label: 'GAMES', href: '/games' },
+  { id: 6, label: 'FREE MONEY', href: '/free-money' },
+  { id: 7, label: 'CONTACT', href: '/contact' },
 ];
 
 export default function MagneticNav() {
@@ -28,16 +32,12 @@ export default function MagneticNav() {
   const [menuOpen, setMenuOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [itemStates, setItemStates] = useState<Record<number, ItemState>>({
-    1: { x: 0, y: 0, scale: 1, opacity: 0.6 },
-    2: { x: 0, y: 0, scale: 1, opacity: 0.6 },
-    3: { x: 0, y: 0, scale: 1, opacity: 0.6 },
-  });
-  const velocitiesRef = useRef<Record<number, { x: number; y: number }>>({
-    1: { x: 0, y: 0 },
-    2: { x: 0, y: 0 },
-    3: { x: 0, y: 0 },
-  });
+  const [itemStates, setItemStates] = useState<Record<number, ItemState>>(
+    Object.fromEntries(NAV_ITEMS.map((item) => [item.id, { x: 0, y: 0, scale: 1, opacity: 0.6 }]))
+  );
+  const velocitiesRef = useRef<Record<number, { x: number; y: number }>>(
+    Object.fromEntries(NAV_ITEMS.map((item) => [item.id, { x: 0, y: 0 }]))
+  );
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -67,7 +67,7 @@ export default function MagneticNav() {
         const MAX_OFFSET = 40;
 
         NAV_ITEMS.forEach((item) => {
-          const itemY = containerCenterY + (item.id - 2) * 80;
+          const itemY = containerCenterY + (item.id - (NAV_ITEMS.length + 1) / 2) * 58;
           const itemX = rect.right - 60;
 
           const distX = mousePos.x - itemX;
@@ -139,7 +139,7 @@ export default function MagneticNav() {
         <nav aria-label="Main navigation" className="pointer-events-auto fixed right-6 top-24 w-48 rounded-2xl border border-white/10 bg-[#0d0d12]/95 p-3 shadow-2xl shadow-cyan-950/30 backdrop-blur-xl">
           {NAV_ITEMS.map((item) => (
             <Link key={item.id} href={item.href} onClick={() => setMenuOpen(false)} className="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-semibold text-white/80 transition hover:bg-cyan-300/10 hover:text-cyan-300">
-              <span className="font-mono text-[10px] text-cyan-300/60">0{item.id}</span>
+              <span className="font-mono text-[10px] text-cyan-300/60">{String(item.id).padStart(2, '0')}</span>
               {item.label}
             </Link>
           ))}
@@ -172,7 +172,7 @@ export default function MagneticNav() {
 
                 {/* Index number */}
                 <div className="text-[10px] font-mono text-gray-500 group-hover:text-cyan-400 transition-colors duration-200 tracking-widest">
-                  0{item.id}
+                  {String(item.id).padStart(2, '0')}
                 </div>
 
                 {/* Label */}
