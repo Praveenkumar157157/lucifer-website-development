@@ -29,6 +29,7 @@ const NAV_ITEMS: NavItem[] = [
 
 export default function MagneticNav() {
   const pathname = usePathname();
+  const [mounted, setMounted] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -38,6 +39,10 @@ export default function MagneticNav() {
   const velocitiesRef = useRef<Record<number, { x: number; y: number }>>(
     Object.fromEntries(NAV_ITEMS.map((item) => [item.id, { x: 0, y: 0 }]))
   );
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -117,6 +122,8 @@ export default function MagneticNav() {
   }, [mousePos]);
 
   const isActive = (href: string) => pathname === href;
+
+  if (!mounted) return null;
 
   return (
     <div
