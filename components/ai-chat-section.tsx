@@ -15,13 +15,19 @@ function getDisplayText(text: string) {
   while ((match = dataPattern.exec(text)) !== null) {
     try {
       const payload = JSON.parse(match[1]) as { delta?: string }
-      if (payload.delta) deltas.push(payload.delta)
+      if (typeof payload.delta === "string") deltas.push(payload.delta)
     } catch {
-      // Ignore malformed stream frames and keep any valid text frames.
+      // Ignore malformed protocol frames.
     }
   }
 
-  return deltas.join("") || text
+  if (deltas.length > 0) return deltas.join("")
+
+  return text
+    .split("\\n")
+    .filter((line) => !/^\\s*(data:|\\[DONE\\])/i.test(line))
+    .join("\\n")
+    .trim()
 }
 
 export function AiChatSection() {
