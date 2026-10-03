@@ -1,6 +1,7 @@
-import { convertToModelMessages, gateway, streamText } from "ai"
+import { convertToModelMessages, createUIMessageStream, createUIMessageStreamResponse } from "ai"
 import { NextResponse } from "next/server"
 
+const OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 const DEFAULT_MODEL = "google/gemini-3.8-flash"
 const ALLOWED_MODELS = new Set([
   "google/gemini-2.5-flash",
@@ -23,20 +24,43 @@ export async function POST(request: Request) {
     }
 
     const modelMessages = await convertToModelMessages(messages)
-    const result = streamText({
-      model: gateway(modelId),
-      system: "You are LUCIFER AI, a friendly, concise AI guide for K Praveenkumar's personal technology lab. Help with Python, AI, APIs, Next.js, automation, debugging, and creative experiments. Be practical, curious, and honest. Never claim to have performed actions you cannot perform.",
-      messages: modelMessages,
-      maxOutputTokens: 1200,
+    const response = await fetch(OPENROUTER_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
+      },
+      body: JSON.stringify({
+        model: modelId,
+        messages: [
+          {
+            role: "system",
+            content:
+              "You are LUCIFER AI, a friendly, concise AI guide for K Praveenkumar's personal technology lab. Help with Python, AI, APIs, Next.js, automation, debugging, and creative experiments. Be practical, curious, and honest. Never claim to have performed actions you cannot perform.",
+          },
+          ...modelMessages,
+        ],
+        max_tokens: 1200,
+      }),
     })
 
-    return new Response(result.textStream, {
-      headers: {
-        "Content-Type": "text/plain; charset=utf-8",
-        "Cache-Control": "no-cache, no-transform",
+    if (!response.ok) {
+      return NextResponse.json({ error: "The OpenRouter request failed." }, { status: 502 })
+    }
+
+    const data = (await response.json()) as { choices?: Array<{ message?: { content?: string } }> }
+    const text = data.choices?.[0]?.message?.content ?? ""
+    const stream = createUIMessageStream({
+      execute: ({ writer }) => {
+        const textId = "openrouter-text"
+        writer.write({ type: "text-start", id: textId })
+        writer.write({ type: "text-delta", id: textId, delta: text })
+        writer.write({ type: "text-end", id: textId })
       },
     })
+
+    return createUIMessageStreamResponse({ stream })
   } catch {
-    return NextResponse.json({ error: "The AI Gateway request failed." }, { status: 500 })
+    return NextResponse.json({ error: "The OpenRouter request failed." }, { status: 500 })
   }
 }
