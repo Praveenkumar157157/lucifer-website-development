@@ -160,7 +160,22 @@ export default function MagneticNav() {
       )}
 
       {menuOpen && (
-        <div className="relative h-full flex flex-col justify-center items-end pr-6 pointer-events-auto">
+        <>
+          <button
+            type="button"
+            aria-label="Close navigation overlay"
+            onClick={() => setMenuOpen(false)}
+            className="pointer-events-auto fixed inset-0 z-40 cursor-default bg-black/45 backdrop-blur-[2px]"
+          />
+          <nav aria-label="Main navigation" className="pointer-events-auto fixed right-4 top-24 z-50 w-[min(22rem,calc(100vw-2rem))] overflow-hidden rounded-[2rem] border border-white/15 bg-[#0c0b14]/90 p-3 shadow-2xl shadow-cyan-950/40 backdrop-blur-2xl sm:right-6 sm:top-28">
+            <div className="flex items-center justify-between border-b border-white/10 px-4 pb-3 pt-2">
+              <div>
+                <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-cyan-300/70">Explore</p>
+                <p className="mt-1 text-sm font-semibold text-white">LUCIFER AI</p>
+              </div>
+              <span className="rounded-full border border-cyan-300/20 bg-cyan-300/10 px-2 py-1 font-mono text-[10px] text-cyan-200">{NAV_ITEMS.length} SECTIONS</span>
+            </div>
+            <div className="max-h-[min(65vh,30rem)] overflow-y-auto overscroll-contain py-2 pr-1 [scrollbar-color:rgba(103,232,249,.45)_transparent] [scrollbar-width:thin]">
         {NAV_ITEMS.map((item) => {
           const state = itemStates[item.id];
           const active = isActive(item.href);
@@ -213,7 +228,9 @@ export default function MagneticNav() {
             </Link>
           );
         })}
-        </div>
+            </div>
+          </nav>
+        </>
       )}
     </div>
   );
