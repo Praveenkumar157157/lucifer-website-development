@@ -32,6 +32,7 @@ export default function MagneticNav() {
   const pathname = usePathname();
   const [mounted, setMounted] = useState(false);
   const [signupPromptOpen, setSignupPromptOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [itemStates, setItemStates] = useState<Record<number, ItemState>>(
@@ -131,8 +132,19 @@ export default function MagneticNav() {
       ref={containerRef}
       className="fixed inset-0 pointer-events-none z-40"
     >
-      <div className="pointer-events-auto fixed right-6 top-6 z-50 w-48">
+      <div className="pointer-events-auto fixed right-6 top-6 z-50 flex items-center gap-3">
         <GoogleSignupButton />
+        <button
+          type="button"
+          aria-label={menuOpen ? 'Close navigation' : 'Open navigation'}
+          aria-expanded={menuOpen}
+          onClick={() => setMenuOpen((open) => !open)}
+          className="flex size-12 flex-col items-center justify-center gap-1.5 rounded-full border border-white/15 bg-black/40 backdrop-blur-md transition hover:border-cyan-300/60 hover:bg-cyan-300/10"
+        >
+          <span className={`h-0.5 w-6 rounded-full bg-cyan-300 transition-transform ${menuOpen ? 'translate-y-2 rotate-45' : ''}`} />
+          <span className={`h-0.5 w-4 rounded-full bg-fuchsia-400 transition-opacity ${menuOpen ? 'opacity-0' : ''}`} />
+          <span className={`h-0.5 w-6 rounded-full bg-white transition-transform ${menuOpen ? '-translate-y-2 -rotate-45' : ''}`} />
+        </button>
       </div>
 
       {signupPromptOpen && (
@@ -147,7 +159,8 @@ export default function MagneticNav() {
         </div>
       )}
 
-      <div className="relative h-full flex flex-col justify-center items-end pr-6 pointer-events-auto">
+      {menuOpen && (
+        <div className="relative h-full flex flex-col justify-center items-end pr-6 pointer-events-auto">
         {NAV_ITEMS.map((item) => {
           const state = itemStates[item.id];
           const active = isActive(item.href);
@@ -159,6 +172,7 @@ export default function MagneticNav() {
               onClick={(event) => {
                 if (item.href !== '/') {
                   event.preventDefault();
+                  setMenuOpen(false);
                   setSignupPromptOpen(true);
                 }
               }}
@@ -199,7 +213,8 @@ export default function MagneticNav() {
             </Link>
           );
         })}
-      </div>
+        </div>
+      )}
     </div>
   );
 }
