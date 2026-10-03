@@ -31,7 +31,7 @@ const NAV_ITEMS: NavItem[] = [
 export default function MagneticNav() {
   const pathname = usePathname();
   const [mounted, setMounted] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [signupPromptOpen, setSignupPromptOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [itemStates, setItemStates] = useState<Record<number, ItemState>>(
@@ -131,29 +131,20 @@ export default function MagneticNav() {
       ref={containerRef}
       className="fixed inset-0 pointer-events-none z-40"
     >
-      <button
-        type="button"
-        aria-label={menuOpen ? 'Close navigation' : 'Open navigation'}
-        aria-expanded={menuOpen}
-        onClick={() => setMenuOpen((open) => !open)}
-        className="pointer-events-auto fixed right-6 top-6 z-50 flex size-12 flex-col items-center justify-center gap-1.5 rounded-full border border-white/15 bg-black/35 backdrop-blur-md transition hover:border-cyan-300/60 hover:bg-cyan-300/10"
-      >
-        <span className={`block h-0.5 w-6 rounded-full bg-cyan-300 transition-transform ${menuOpen ? 'translate-y-2 rotate-45' : ''}`} />
-        <span className={`block h-0.5 w-4 rounded-full bg-fuchsia-400 transition-opacity ${menuOpen ? 'opacity-0' : ''}`} />
-        <span className={`block h-0.5 w-6 rounded-full bg-white transition-transform ${menuOpen ? '-translate-y-2 -rotate-45' : ''}`} />
-      </button>
+      <div className="pointer-events-auto fixed right-6 top-6 z-50 w-48">
+        <GoogleSignupButton />
+      </div>
 
-      {menuOpen && (
-        <nav aria-label="Main navigation" className="pointer-events-auto fixed right-6 top-24 w-48 rounded-2xl border border-white/10 bg-[#0d0d12]/95 p-3 shadow-2xl shadow-cyan-950/30 backdrop-blur-xl">
-          <GoogleSignupButton />
-          <div className="my-3 border-t border-white/10" />
-          {NAV_ITEMS.map((item) => (
-            <Link key={item.id} href={item.href} onClick={() => setMenuOpen(false)} className="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-semibold text-white/80 transition hover:bg-cyan-300/10 hover:text-cyan-300">
-              <span className="font-mono text-[10px] text-cyan-300/60">{String(item.id).padStart(2, '0')}</span>
-              {item.label}
-            </Link>
-          ))}
-        </nav>
+      {signupPromptOpen && (
+        <div className="pointer-events-auto fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-6 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="signup-prompt-title">
+          <div className="relative w-full max-w-sm rounded-3xl border border-white/15 bg-[#0d0d12] p-6 shadow-2xl shadow-cyan-950/40">
+            <button type="button" onClick={() => setSignupPromptOpen(false)} className="absolute right-4 top-4 text-2xl leading-none text-white/50 hover:text-white" aria-label="Close sign up prompt">×</button>
+            <p className="mb-2 font-mono text-xs uppercase tracking-[0.25em] text-cyan-300">Members area</p>
+            <h2 id="signup-prompt-title" className="mb-2 text-2xl font-bold text-white">Sign up to continue</h2>
+            <p className="mb-5 text-sm leading-6 text-white/60">Explore the homepage freely. Sign up with Google to open this section.</p>
+            <GoogleSignupButton />
+          </div>
+        </div>
       )}
 
       <div className="relative h-full flex flex-col justify-center items-end pr-6 pointer-events-auto">
@@ -165,6 +156,12 @@ export default function MagneticNav() {
             <Link
               key={item.id}
               href={item.href}
+              onClick={(event) => {
+                if (item.href !== '/') {
+                  event.preventDefault();
+                  setSignupPromptOpen(true);
+                }
+              }}
               className="group relative mb-16 last:mb-0 transition-all duration-300"
               style={{
                 transform: `translate(${state.x}px, ${state.y}px) scale(${state.scale})`,
