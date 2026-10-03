@@ -34,15 +34,19 @@ export async function POST(request: Request) {
         .join(""),
     })).filter((message) => message.content)
 
-    if (!process.env.OPENROUTER_API_KEY) {
-      return NextResponse.json({ error: "OPENROUTER_API_KEY is not configured." }, { status: 500 })
+    const apiKey = process.env.OPENROUTER_API_KEY_2 ?? process.env.OPENROUTER_API_KEY
+
+    if (!apiKey) {
+      return NextResponse.json({ error: "OpenRouter API key is not configured." }, { status: 500 })
     }
 
     const response = await fetch(OPENROUTER_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
+        Authorization: `Bearer ${apiKey}`,
+        "HTTP-Referer": "https://lucifer-website-development.vercel.app",
+        "X-OpenRouter-Title": "LUCIFER AI",
       },
       body: JSON.stringify({
         model: modelId,
