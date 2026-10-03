@@ -49,7 +49,7 @@ const itemVariants = {
     y: 0,
     scale: 1,
     transition: {
-      type: "spring",
+      type: "spring" as const,
       stiffness: 100,
       damping: 20,
     },
@@ -124,7 +124,7 @@ export function ActivationsSection() {
               whileHover={{
                 y: -8,
                 scale: 1.02,
-                transition: { type: "spring", stiffness: 400, damping: 17 },
+                transition: { type: "spring" as const, stiffness: 400, damping: 17 },
               }}
               className="group bg-[#121212] rounded-2xl p-6 cursor-pointer relative overflow-hidden"
             >
@@ -137,7 +137,7 @@ export function ActivationsSection() {
                 <motion.div
                   className="w-11 h-11 rounded-xl bg-[#AFFF00] flex items-center justify-center mb-4 group-hover:bg-[#121212] transition-colors duration-300"
                   whileHover={{ rotate: 10, scale: 1.1 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                  transition={{ type: "spring" as const, stiffness: 400, damping: 17 }}
                 >
                   <activation.icon className="w-5 h-5 text-[#121212] group-hover:text-[#AFFF00] transition-colors duration-300" />
                 </motion.div>
@@ -152,7 +152,7 @@ export function ActivationsSection() {
                 <motion.button
                   className="flex items-center gap-2 text-[#AFFF00] group-hover:text-[#121212] font-bold text-xs tracking-wide transition-colors duration-300"
                   whileHover={{ x: 4 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                  transition={{ type: "spring" as const, stiffness: 400, damping: 17 }}
                 >
                   {activation.cta}
                   <motion.svg
@@ -162,7 +162,7 @@ export function ActivationsSection() {
                     stroke="currentColor"
                     initial={{ x: 0 }}
                     whileHover={{ x: 4 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                    transition={{ type: "spring" as const, stiffness: 400, damping: 17 }}
                   >
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </motion.svg>

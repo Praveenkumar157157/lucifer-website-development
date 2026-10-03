@@ -115,7 +115,7 @@ function FeatureCard({ feature, index }: { feature: (typeof features)[0]; index:
             className="w-10 h-10 rounded-xl flex items-center justify-center mb-4 relative"
             style={{ backgroundColor: `${feature.accent}20` }}
             whileHover={{ scale: 1.1 }}
-            transition={{ type: "spring", stiffness: 400, damping: 17 }}
+            transition={{ type: "spring" as const, stiffness: 400, damping: 17 }}
           >
             <motion.div
               className="absolute inset-0 rounded-xl"
@@ -134,7 +134,7 @@ function FeatureCard({ feature, index }: { feature: (typeof features)[0]; index:
               initial={{ opacity: 0, scale: 0.5 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ type: "spring", stiffness: 200, damping: 20, delay: 0.2 + index * 0.1 }}
+              transition={{ type: "spring" as const, stiffness: 200, damping: 20, delay: 0.2 + index * 0.1 }}
             >
               <span style={{ color: feature.accent }}>{feature.title}</span>
             </motion.div>

@@ -26,7 +26,7 @@ const scaleInVariants = {
     scale: 1,
     rotate: 0,
     transition: {
-      type: "spring",
+      type: "spring" as const,
       stiffness: 100,
       damping: 20,
       delay: 0.3,
@@ -154,7 +154,7 @@ export function HeroSection() {
                 className="bg-[#AFFF00] text-[#121212] px-6 py-3 rounded-full font-bold text-sm tracking-wide flex items-center gap-2 group relative overflow-hidden"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                transition={{ type: "spring" as const, stiffness: 400, damping: 17 }}
               >
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full"
@@ -169,7 +169,7 @@ export function HeroSection() {
                   stroke="currentColor"
                   initial={{ x: 0 }}
                   whileHover={{ x: 4 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                  transition={{ type: "spring" as const, stiffness: 400, damping: 17 }}
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </motion.svg>
@@ -178,7 +178,7 @@ export function HeroSection() {
                 className="border-2 border-[#121212] text-[#121212] px-6 py-3 rounded-full font-bold text-sm tracking-wide relative overflow-hidden"
                 whileHover={{ scale: 1.02, backgroundColor: "#121212", color: "#fff" }}
                 whileTap={{ scale: 0.98 }}
-                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                transition={{ type: "spring" as const, stiffness: 400, damping: 17 }}
               >
                 Explore the system
               </motion.button>

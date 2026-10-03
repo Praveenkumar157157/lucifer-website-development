@@ -21,7 +21,7 @@ const itemVariants = {
     opacity: 1,
     y: 0,
     transition: {
-      type: "spring",
+      type: "spring" as const,
       stiffness: 100,
       damping: 20,
     },
@@ -104,7 +104,7 @@ export function Footer() {
               className="bg-[#AFFF00] text-[#121212] px-6 py-3 rounded-xl font-bold text-sm tracking-wide whitespace-nowrap relative overflow-hidden"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              transition={{ type: "spring" as const, stiffness: 400, damping: 17 }}
               onClick={handleSubmit}
             >
               <motion.div
@@ -157,7 +157,7 @@ export function Footer() {
               <ul className="space-y-2">
                 {section.links.map((item) => (
                   <li key={item}>
-                    <motion.div whileHover={{ x: 4 }} transition={{ type: "spring", stiffness: 400, damping: 17 }}>
+                    <motion.div whileHover={{ x: 4 }} transition={{ type: "spring" as const, stiffness: 400, damping: 17 }}>
                       <Link
                         href="#"
                         className="text-white/60 hover:text-cyan-300 font-mono text-xs transition-colors inline-block"
@@ -182,7 +182,7 @@ export function Footer() {
           <motion.div
             className="flex items-center gap-2"
             whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 400, damping: 17 }}
+            transition={{ type: "spring" as const, stiffness: 400, damping: 17 }}
           >
             <span className="flex items-center gap-3 text-xl font-black">
               <span className="size-9 overflow-hidden rounded-xl border border-fuchsia-400/40"><img src="/images/luciferai-brand-logo.jpg" alt="LUCIFER AI cat mascot logo" className="size-full object-cover" /></span>

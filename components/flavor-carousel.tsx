@@ -51,7 +51,7 @@ const slideVariants = {
     scale: 1,
     rotateY: 0,
     transition: {
-      type: "spring",
+      type: "spring" as const,
       stiffness: 300,
       damping: 30,
     },
@@ -62,7 +62,7 @@ const slideVariants = {
     scale: 0.9,
     rotateY: direction > 0 ? -15 : 15,
     transition: {
-      type: "spring",
+      type: "spring" as const,
       stiffness: 300,
       damping: 30,
     },
@@ -159,7 +159,7 @@ export function FlavorCarousel() {
               className="hidden md:flex w-12 h-12 rounded-full border-2 border-[#121212] items-center justify-center hover:bg-[#121212] hover:text-white transition-colors"
               whileHover={{ scale: 1.1, rotate: -5 }}
               whileTap={{ scale: 0.9 }}
-              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              transition={{ type: "spring" as const, stiffness: 400, damping: 17 }}
             >
               <ChevronLeft className="w-5 h-5" />
             </motion.button>
@@ -193,7 +193,7 @@ export function FlavorCarousel() {
                     <motion.div
                       className="relative aspect-[3/4] flex items-center justify-center"
                       whileHover={{ scale: 1.05 }}
-                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                      transition={{ type: "spring" as const, stiffness: 300, damping: 20 }}
                     >
                       <Image
                         src={currentFlavor.image || "/placeholder.svg"}
@@ -227,7 +227,7 @@ export function FlavorCarousel() {
                           className="text-3xl md:text-4xl font-black text-[#121212] tracking-tighter mt-1"
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 0.3, type: "spring", stiffness: 100 }}
+                          transition={{ delay: 0.3, type: "spring" as const, stiffness: 100 }}
                         >
                           {currentFlavor.name}
                         </motion.h3>
@@ -265,7 +265,7 @@ export function FlavorCarousel() {
                           className="px-6 py-3 rounded-full font-bold text-sm tracking-wide w-full md:w-auto relative overflow-hidden"
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
-                          transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                          transition={{ type: "spring" as const, stiffness: 400, damping: 17 }}
                           style={{ backgroundColor: currentFlavor.accentColor, color: "#121212" }}
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
@@ -306,7 +306,7 @@ export function FlavorCarousel() {
               className="hidden md:flex w-12 h-12 rounded-full border-2 border-[#121212] items-center justify-center hover:bg-[#121212] hover:text-white transition-colors"
               whileHover={{ scale: 1.1, rotate: 5 }}
               whileTap={{ scale: 0.9 }}
-              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              transition={{ type: "spring" as const, stiffness: 400, damping: 17 }}
             >
               <ChevronRight className="w-5 h-5" />
             </motion.button>
@@ -346,7 +346,7 @@ export function FlavorCarousel() {
                   width: index === currentIndex ? 28 : 10,
                 }}
                 whileHover={{ scale: 1.2 }}
-                transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                transition={{ type: "spring" as const, stiffness: 400, damping: 25 }}
               />
             ))}
           </div>
