@@ -1,8 +1,8 @@
-import { convertToModelMessages, createUIMessageStream, createUIMessageStreamResponse } from "ai"
+import { createUIMessageStream, createUIMessageStreamResponse } from "ai"
 import { NextResponse } from "next/server"
 
 const OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
-const DEFAULT_MODEL = "google/gemini-3.8-flash"
+const DEFAULT_MODEL = "openai/gpt-4o"
 const ALLOWED_MODELS = new Set([
   "google/gemini-2.5-flash",
   "google/gemini-3.8-flash",
@@ -13,7 +13,10 @@ const ALLOWED_MODELS = new Set([
 export async function POST(request: Request) {
   try {
     const body = (await request.json()) as {
-      messages?: Parameters<typeof convertToModelMessages>[0]
+      messages?: Array<{
+        role: "user" | "assistant" | "system"
+        parts?: Array<{ type: string; text?: string }>
+      }>
       model?: string
     }
     const modelId = body.model && ALLOWED_MODELS.has(body.model) ? body.model : DEFAULT_MODEL
@@ -23,7 +26,18 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Invalid conversation." }, { status: 400 })
     }
 
-    const modelMessages = await convertToModelMessages(messages)
+    const modelMessages = messages.map((message) => ({
+      role: message.role,
+      content: (message.parts ?? [])
+        .filter((part): part is { type: "text"; text: string } => part.type === "text")
+        .map((part) => part.text)
+        .join(""),
+    })).filter((message) => message.content)
+
+    if (!process.env.OPENROUTER_API_KEY) {
+      return NextResponse.json({ error: "OPENROUTER_API_KEY is not configured." }, { status: 500 })
+    }
+
     const response = await fetch(OPENROUTER_URL, {
       method: "POST",
       headers: {
